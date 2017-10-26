@@ -1,0 +1,21 @@
+{
+  "vocabularyName": "Mobivoc",
+  "server": "http://vocol.vagrantshare.com",
+  "repositoryURL": "https://github.com/lavhal/testProj.git",
+  "repositoryOwner": "lavhal",
+  "repositoryName": "testProj",
+  "branchName": "master",
+  "user": "lavhal",
+  "password": "jkjkhjhh",
+  "repositoryService": "gitHub",
+  "syntaxValidation": "Rapper",
+  "documentationGeneration": "SchemaOrg",
+  "visualization": "true",
+  "sparqlEndPoint": "true",
+  "syntaxValidationReport": "true",
+  "evolutionReport": "true",
+  "otherBranches": "true",
+  "clientHooks": "true",
+  "predefinedQueries": "true",
+  "rdfxml": "true"
+}
