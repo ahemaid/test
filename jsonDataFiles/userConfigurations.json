@@ -6,16 +6,13 @@
   "repositoryName": "testProj",
   "branchName": "master",
   "user": "lavhal",
-  "password": "jkjkhjhh",
+  "password": "233323332",
   "repositoryService": "gitHub",
-  "syntaxValidation": "Rapper",
+  "syntaxValidation": "Jena Riot",
   "documentationGeneration": "SchemaOrg",
   "visualization": "true",
-  "sparqlEndPoint": "true",
   "syntaxValidationReport": "true",
-  "evolutionReport": "true",
-  "otherBranches": "true",
   "clientHooks": "true",
-  "predefinedQueries": "true",
-  "rdfxml": "true"
+  "turtleEditor": "true",
+  "predefinedQueries": "true"
 }

@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var shell = require('shelljs');
+
 //  GET home page.
 router.get('/', function (req, res) {
 
@@ -13,6 +15,13 @@ router.get('/', function (req, res) {
     }
     else {
       {
+        shell.exec('pwd', {
+          silent: false
+        }).stdout;
+        shell.cd('SimpleSparqlQuery/SimpleSparqlQuery/');
+        shell.exec('java -jar simpleHtmlGenerator.jar', {
+          silent: false
+        }).stdout;
         //GET home page.
         res.render('index', {
              title: 'MobiVoc',

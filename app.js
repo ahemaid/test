@@ -9,8 +9,8 @@ var contactus = require('./routes/contactus');
 var users = require('./routes/users');
 var documentation = require('./routes/documentation');
 var visualization = require('./routes/visualization');
-var turtleEditor = require('./routes/turtleEditor');
-var config = require('./routes/config');
+var turtleEditorLink = require('./routes/turtleEditor');
+//var config = require('./routes/config');
 var fs = require('fs');
 var  jsonfile  =  require('jsonfile');
 var app = express();
@@ -36,8 +36,13 @@ app.use('/documentation', documentation);
 app.use('/visualization', visualization);
 app.use('/webvowlLink', express.static("views/webvowl"));
 app.use('/turtleEditorLink', express.static("views/turtleEditor"));
-app.use('/turtleEditor', turtleEditor);
-app.use('/config', config);
+app.use('/turtleEditor', turtleEditorLink);
+
+app.get('/config', function(req, res) {
+  res.render('config.ejs', {
+    title: 'Configuration App'
+  });
+});
 
 // http post when  a user configurations is submitted
 app.post('/config', function(req, res) {

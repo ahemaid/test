@@ -5,18 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <title>
-    <%- title %>
+    <%- title%>
   </title>
-  <link rel="stylesheet" href="minified/themes/default.min.css" />
   <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/minified/themes/default.min.css" />
   <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="/semantic/dist/semantic.min.js"></script>
-  <script src="minified/jquery.sceditor.bbcode.min.js"></script>
+  <script src="/minified/jquery.sceditor.bbcode.min.js"></script>
+
 </head>
 
 <body style=" padding: 10px; ">
@@ -136,19 +137,19 @@ Repository service         </a>
                 <div class="field">
                   <div class="ui radio checkbox">
                     <input type="radio" name="repositoryService" value="gitHub" checked>
-                    <label>gitHub</label>
+                    <label>GitHub</label>
                   </div>
                 </div>
                 <div class="field">
                   <div class="ui radio checkbox">
                     <input type="radio" name="repositoryService" value="gitLab">
-                    <label>gitLab</label>
+                    <label>GitLab</label>
                   </div>
                 </div>
                 <div class="field">
                   <div class="ui radio checkbox">
                     <input type="radio" name="repositoryService" value="bitBucket">
-                    <label>bitBucket</label>
+                    <label>BitBucket</label>
                   </div>
                 </div>
               </div>
@@ -285,6 +286,8 @@ Repository service         </a>
       </div>
     </div>
   </div>
+</body>
+</html>
 
   <script type="text/javascript">
     $('.ui.checkbox').checkbox();
