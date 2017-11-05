@@ -44,6 +44,12 @@ app.get('/config', function(req, res) {
   });
 });
 
+app.get('/querying', function(req, res) {
+  res.render('querying.ejs', {
+    title: 'Make a query'
+  });
+});
+
 // http post when  a user configurations is submitted
 app.post('/config', function(req, res) {
   var filepath = 'jsonDataFiles/userConfigurations.json';
@@ -73,7 +79,7 @@ fs.exists(path, function(exists) {
   if (exists) {
     jsonfile.readFile(path, function(err, obj)  {
       console.log(obj);
-      var menu = [];//Array(7).fill('false');
+      var menu = Array(7).fill('false');
       Object.keys(obj).forEach(function(k) {
         console.log(k + "" + obj[k]);
         if (k === "vocabularyName") {

@@ -315,7 +315,7 @@
           }
           $('#detailTable').html(externalURITable);
           $('#detailTable').transition('shake')
-          var endpoint = "http://localhost:3030/ds/sparql?query=";
+          var endpoint = "http://localhost:3030/dataset/sparql?query=";
           var querystring = 'SELECT  ?s WHERE { ?s  a <' + encodeURIComponent(ExteralURI) + '> }';
           var method = "POST";
           //  async = true.
@@ -898,7 +898,7 @@
 
       // show info. details of clicked instance
       function showInstanceDetails(instanceURI) {
-        var endpoint = "http://localhost:3030/ds/sparql?query=";
+        var endpoint = "http://localhost:3030/dataset/sparql?query=";
         var querystring = 'SELECT  ?p ?o WHERE {  <' + encodeURIComponent(instanceURI) + '> ?p ?o }';
         var method = "POST";
         var async = true;
@@ -975,7 +975,7 @@
             }
           }
           if (isURIExist) {
-            var endpoint = "http://localhost:3030/ds/sparql?query=";
+            var endpoint = "http://localhost:3030/dataset/sparql?query=";
             var querystring = 'SELECT  ?s WHERE { ?s  a <' + encodeURIComponent(conceptURI) + '> }';
             var method = "POST";
             var async = true;
@@ -1043,7 +1043,7 @@
             isURIExist = false;
         }
         if (isURIExist) {
-          var endpoint = "http://localhost:3030/ds/sparql?query="
+          var endpoint = "http://localhost:3030/dataset/sparql?query="
           if (!anotherQuery)
             var querystring = 'CONSTRUCT{<' + encodeURIComponent(conceptURI) + '> ?p ?o .}WHERE {<' + encodeURIComponent(conceptURI) + '> ?p ?o .}';
           else
@@ -1159,7 +1159,7 @@
           }]);
         }
         if (isURIExist) {
-          var endpoint = "http://localhost:3030/ds/sparql"
+          var endpoint = "http://localhost:3030/dataset/sparql"
           if (!anotherQuery)
             var sparql = 'SELECT  ?p ?o WHERE {  <' + conceptURI + '> ?p ?o }'
           else

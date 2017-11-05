@@ -57,7 +57,7 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
     currentFile: undefined
   };
 
-  var editor = CodeMirror.fromTextArea(inputElements.contents[0], { 
+  var editor = CodeMirror.fromTextArea(inputElements.contents[0], {
     mode:        "turtle",
     autofocus:   false,
     lineNumbers: true,
@@ -80,6 +80,8 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
   for (var key in inputElements) {
     inputElements[key].prop("disabled", false);
   }
+  // read user configurations from json file
+  
 
   // Prefill some fields for a quick example
   inputElements.owner.val("vocol");
@@ -87,7 +89,7 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
   // inputElements.password.val("token");
 
   // Github Interaction -------------------------------------------------------
-  
+
   var loadFromGitHub = function () {
     var username = inputElements.username.val().trim();
     var ownername = inputElements.owner.val().trim();
@@ -111,11 +113,11 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
 
       user = gh.getUser();
       logger.debug("user", user);
-    
+
       if (!user) {
         logger.warning("Not logged in.", username);
       }
-      
+
       repo = gh.getRepo(ownername, reponame);
       branch = repo.getBranch(branchname);
 
@@ -123,9 +125,9 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
       // the next call is redundant: branch already contains list of files,
       // and this should not be "master" but the selected branch:
       var tree = repo.git.getTree("master", null)
-        .done(function(tree) 
+        .done(function(tree)
           {
-               for (var i = 0; i < tree.length; i++) 
+               for (var i = 0; i < tree.length; i++)
                {
                   if(tree[i].path.endsWith(".ttl"))
                   {
@@ -144,9 +146,9 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
       inputElements.owner.prop("disabled", true);
       inputElements.repo.prop("disabled", true);
       inputElements.branch.prop("disabled", true);
-      
+
       disableLoadButton();
-      
+
       changeSyntaxCheckState("pending");
     }
   };
@@ -159,7 +161,7 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
         editor.setValue(contents.content);
         state.fileIsLoaded = true;
         displayCurrentFilename(filename);
-        
+
         if (user) {
           enableSaveButton();
         }
@@ -211,7 +213,7 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
   };
 
   // "http://vowl.visualdataweb.org/webvowl/index.html#iri=https://raw.githubusercontent.com/mobivoc/mobivoc/master/"
-  
+
   // Syntax Check -------------------------------------------------------------
 
   var toggleChecking = function () {
@@ -272,9 +274,9 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
       dynamicNames[objectSplit.namespace] = dynamicNames[objectSplit.namespace] || {};
       dynamicNames[objectSplit.namespace][objectSplit.name] = true;
     } else if (!triple) {
-      changeSyntaxCheckState("passed"); 
-      editor.custom.dynamicNames = dynamicNames;     
-    } 
+      changeSyntaxCheckState("passed");
+      editor.custom.dynamicNames = dynamicNames;
+    }
 
     if (prefixes) {
       editor.custom.prefixes = prefixes;
@@ -305,8 +307,8 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
 
   var checkSyntax = function () {
     /* remove all previous errors  */
-    /* TODO: IMPROVE EFFICIENCY */ 
-    editor.eachLine(function(line) { 
+    /* TODO: IMPROVE EFFICIENCY */
+    editor.eachLine(function(line) {
       editor.getDoc().removeLineClass(line, "wrap");
       editor.clearGutter("breakpoints");
     });
@@ -336,11 +338,11 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
 
 
   // Repeated actions ---------------------------------------------------------
-  
+
   window.setInterval(checkForUpdates, 1000);
 
   // Utility ------------------------------------------------------------------
-  
+
   var disableLoadButton = function () {
     inputElements.load.removeClass("btn-primary");
     inputElements.load.addClass("btn-default");
@@ -352,7 +354,7 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
     inputElements.save.addClass("btn-primary");
     inputElements.save.prop("disabled", false);
   };
-  
+
   var disableSaveButton = function () {
     inputElements.save.addClass("btn-default");
     inputElements.save.removeClass("btn-primary");
@@ -361,7 +363,7 @@ function($, Github, N3, CodeMirror, ShowHint, ModeTurtle, HintTurtle, logger) {
 
   // do it
   disableSaveButton();
-  
+
   if (!String.prototype.endsWith) {
     String.prototype.endsWith = function(searchString, position) {
         var subjectString = this.toString();

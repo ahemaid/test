@@ -399,7 +399,7 @@ fs.exists(path, function(exists) {
 
       // give permission to the root of the project
       shell.cd('../..');
-      shell.exec('chmod -R u+x .');
+      //shell.exec('chmod -R u+x .');
       //shell.echo('echo File repoConfiguration.sh saved..');
       //shell.exec('sh scripts/repoConfiguration.sh ');
 
@@ -522,14 +522,16 @@ fs.exists(path, function(exists) {
       ////////////////////////////////////////////////////////////////////
       //TODO: just disable for testing perpose
       if (obj.clientHooks === "true") {
-        shell.cd(".."); // in repoFolder path
-        shell.mkdir('-p', 'VoColClient');
-        shell.cp('-r', '/home/vagrant/VoColClient/Hooks', 'VoColClient/');
+        shell.exec("pwd"); // in repoFolder path
+
+        shell.cd("../repoFolder"); // in repoFolder path
+        //shell.mkdir('-p', 'VoColClient');
+        shell.cp('-r', '../VoColApp/helper/tools/VoColClient/Hooks', 'VoColClient/');
         shell.cd('-p', 'VoColClient/Hooks');
         //TODO:
         var serverURL = "${" + obj.server + "//\//\\/}"
         //
-        shell.sed('-i',  "s/ServerURL/"+serverURL+"/g",'pre-commit', {
+        shell.sed('-i',  "s/ServerURL/"+serverURL+"/g" +' pre-commit', {
           silent: false
         }).stdout;
         shell.exec('pwd');
@@ -549,7 +551,7 @@ fs.exists(path, function(exists) {
         //TODO*:change  the following login
         //shell.exec('git clone "${repository:0:8}${user}:${password}@${repository:8}.git" repoFolder',{silent:false}).stdout;
         if (obj.repositoryService === 'gitHub')
-          shell.exec('git push "' + obj.repositoryURL + '" repoFolder', {
+          shell.exec('"https://'+obj.user+':'+obj.password+'@' + obj.repositoryURL.slice(8) + '.git" repoFolder', {
             silent: false
           }).stdout;
         else if (obj.repositoryService === 'gitLab')
@@ -618,35 +620,35 @@ fs.exists(path, function(exists) {
       // shell.rm("-rf", "/home/vagrant/schemaorg/docs/TurtleEditor", {
       //   silent: false
       // }).stdout;
-      if (turtleEditor === true && obj.repositoryService === "gitHub") {
-      //   // TODO:schemaorg folder is not exist till now
-      //   shell.cp('-r', '/home/vagrant/VoColClient/TurtleEditor', 'schemaorg/docs/TurtleEditor', {
+      // if (turtleEditor === true && obj.repositoryService === "gitHub") {
+      // //   // TODO:schemaorg folder is not exist till now
+      // //   shell.cp('-r', '/home/vagrant/VoColClient/TurtleEditor', 'schemaorg/docs/TurtleEditor', {
+      // //     silent: false
+      // //   }).stdout;
+      // //   shell.cd('schemaorg/docs/TurtleEditor', {
+      // //     silent: false
+      // //   }).stdout;
+      // shell.cd('../VoColApp/view/turtleEditor/', {
+      //   silent: false
+      // }).stdout;
+      // shell.exec('pwd', {
+      //   silent: false
+      // }).stdout;
+      //   //var turtleEditorURL = obj.user + "\/" + obj.repositoryName;
+      //   // shell.exec('sed -i "s/TurtleEditorURL/' + turtleEditorURL + '/g" github-ttl-editor.html', {
+      //   //   silent: false
+      //   // }).stdout;
+      //   // shell.exec('sed -i "s/TurtleEditorURL/' + turtleEditorURL + '/g" README.md', {
+      //   //   silent: false
+      //   // }).stdout;
+      //   shell.exec('sed -i "s/user_to_replace/' + obj.user + '/g" js/turtle-editor.js', {
       //     silent: false
       //   }).stdout;
-      //   shell.cd('schemaorg/docs/TurtleEditor', {
+      //   shell.exec('sed -i "s/repo_to_replace/' + obj.repositoryName + '/g" js/turtle-editor.js', {
       //     silent: false
       //   }).stdout;
-      shell.cd('\\', {
-        silent: false
-      }).stdout;
-      shell.exec('pwd', {
-        silent: false
-      }).stdout;
-        var turtleEditorURL = obj.user + "\/" + obj.repositoryName;
-        // shell.exec('sed -i "s/TurtleEditorURL/' + turtleEditorURL + '/g" github-ttl-editor.html', {
-        //   silent: false
-        // }).stdout;
-        // shell.exec('sed -i "s/TurtleEditorURL/' + turtleEditorURL + '/g" README.md', {
-        //   silent: false
-        // }).stdout;
-        shell.exec('sed -i "s/user_to_replace/' + obj.user + '/g" js/turtle-editor.js', {
-          silent: false
-        }).stdout;
-        shell.exec('sed -i "s/repo_to_replace/' + obj.repositoryName + '/g" js/turtle-editor.js', {
-          silent: false
-        }).stdout;
-
-      }
+      //
+      // }
 
       // rm -rf /home/vagrant/schemaorg/docs/TurtleEditor
       //turtleEditorURL="${user}\/${repoNameOnly}"
