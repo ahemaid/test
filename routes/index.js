@@ -2,30 +2,29 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var shell = require('shelljs');
+var jsonfile = require('jsonfile');
+
 
 //  GET home page.
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
 
   // check if the userConfigurations file is exist
   // for the first time of app running
   var path = "jsonDataFiles/userConfigurations.json";
   fs.exists(path, function(exists) {
-    if(!exists){
+    if (!exists) {
       res.redirect('/config');
-    }
-    else {
+    } else {
       {
-        shell.exec('pwd', {
-          silent: false
-        }).stdout;
-        shell.cd('SimpleSparqlQuery/SimpleSparqlQuery/');
-        shell.exec('java -jar simpleHtmlGenerator.jar', {
-          silent: false
-        }).stdout;
-        //GET home page.
-        res.render('index', {
-             title: 'MobiVoc',
-         });
+        jsonfile.readFile(path, function(err, obj)  {
+          if (err)
+            console.log(err); 
+          if (obj.hasOwnProperty('text'))
+            res.render('index', {
+              title: 'MobiVoc',
+              homePage: obj.text
+            });
+        });
       }
     }
   });

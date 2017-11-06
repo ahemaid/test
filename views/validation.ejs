@@ -1,0 +1,10 @@
+<% include header %>
+<div style="margin-top: 5% !important;"></div>
+<h1><%- title %></h1>
+<br/>
+<% if(syntaxErrorsBlink === true)  { %>
+<%- syntaxErrors %>
+<% } else{%>
+<h2>No errors were found</h2>
+<% }%>
+<% include footer %>

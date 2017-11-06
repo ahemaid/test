@@ -10,6 +10,9 @@ var users = require('./routes/users');
 var documentation = require('./routes/documentation');
 var visualization = require('./routes/visualization');
 var turtleEditorLink = require('./routes/turtleEditor');
+var evolution = require('./routes/evolution');
+
+
 //var config = require('./routes/config');
 var fs = require('fs');
 var  jsonfile  =  require('jsonfile');
@@ -37,10 +40,27 @@ app.use('/visualization', visualization);
 app.use('/webvowlLink', express.static("views/webvowl"));
 app.use('/turtleEditorLink', express.static("views/turtleEditor"));
 app.use('/turtleEditor', turtleEditorLink);
+app.use('/evolution', evolution);
+
 
 app.get('/config', function(req, res) {
   res.render('config.ejs', {
     title: 'Configuration App'
+  });
+});
+
+app.locals.syntaxErrorsBlink = false;
+
+var filePath = '../VoColApp/jsonDataFiles/syntaxErrors.json';
+if (fs.existsSync(filePath)) {
+  app.locals.syntaxErrors = fs.readFileSync(filePath, 'utf8');
+  app.locals.syntaxErrorsBlink = true;
+}
+
+
+app.get('/validation', function(req, res) {
+  res.render('validation.ejs', {
+    title: 'Syntax Validation::'
   });
 });
 
