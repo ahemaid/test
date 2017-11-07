@@ -37,6 +37,9 @@
         $("#validationLink").css({"backgroundColor":"yellow"});
 
       }, 1000);
+      if (<%- syntaxErrorsBlink %>  === false)
+      $('#evolutionLi').remove();
+
 
     }
 
@@ -72,7 +75,7 @@
                     <li><a href="/visualization">Visualization</a></li>
                     <% } %>
                       <% if (userConfigurations[3]) {%>
-                        <li><a href="/querying">Querying</a></li>
+                        <li id = "evolutionLi" ><a href="/querying">Querying</a></li>
                         <% } %>
 
                           <% if (userConfigurations[4]) {%>

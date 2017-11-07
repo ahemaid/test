@@ -11,12 +11,14 @@ var documentation = require('./routes/documentation');
 var visualization = require('./routes/visualization');
 var turtleEditorLink = require('./routes/turtleEditor');
 var evolution = require('./routes/evolution');
-
-
-//var config = require('./routes/config');
+var startup = require('./routes/startup');
 var fs = require('fs');
 var  jsonfile  =  require('jsonfile');
 var app = express();
+var watch = require('node-watch');
+
+
+
 
 
 // view engine setup
@@ -41,6 +43,8 @@ app.use('/webvowlLink', express.static("views/webvowl"));
 app.use('/turtleEditorLink', express.static("views/turtleEditor"));
 app.use('/turtleEditor', turtleEditorLink);
 app.use('/evolution', evolution);
+app.use('/startup', startup);
+
 
 
 app.get('/config', function(req, res) {
@@ -51,7 +55,7 @@ app.get('/config', function(req, res) {
 
 app.locals.syntaxErrorsBlink = false;
 
-var filePath = '../VoColApp/jsonDataFiles/syntaxErrors.json';
+var filePath = 'jsonDataFiles/syntaxErrors.json';
 if (fs.existsSync(filePath)) {
   app.locals.syntaxErrors = fs.readFileSync(filePath, 'utf8');
   app.locals.syntaxErrorsBlink = true;
@@ -94,40 +98,40 @@ app.post('/config', function(req, res) {
 
 // check if the userConfigurations file is exist
 // for the first time of app running
+console.log(process.cwd());
 var path = "jsonDataFiles/userConfigurations.json";
-fs.exists(path, function(exists) {
-  if (exists) {
-    jsonfile.readFile(path, function(err, obj)  {
-      console.log(obj);
-      var menu = Array(7).fill('false');
-      Object.keys(obj).forEach(function(k) {
-        console.log(k + "" + obj[k]);
-        if (k === "vocabularyName") {
-          // store projectTitle to be used by header.ejs
-          app.locals.projectTitle = obj[k];
-        } else if (k === "turtleEditor") { //menu[0]
-          menu[0] = 'ture';
-          // do more stuff
-        } else if (k === "documentationGeneration") { //menu[1]
-          menu[1] = 'ture';
-        } else if (k === "visualization") { //menu[2]
-          menu[2] = 'ture';
-        } else if (k === "sparqlEndPoint") { //menu[3]
-          menu[3] = 'ture';
-        } else if (k === "evolutionReport") { //menu[4]
-          menu[4] = 'ture';
-        } else if (k === "predefinedQueries") { //menu[5]
-          menu[5] = 'ture';
-        } else if (k === "syntaxValidation") { //menu[6]
-          menu[6] = 'ture';
-        }
-      });
-      // store menu to be used by header.ejs
-      app.locals.userConfigurations = menu;
-      console.log(menu);
-    })
-  }
-});
+watch(path, { recursive: true }, function(evt, name) {
+  fs.exists(path, function(exists) {
+    if (exists) {
+      jsonfile.readFile(path, function(err, obj)  {
+        var menu = Array(7).fill('false');
+        Object.keys(obj).forEach(function(k) {
+          if (k === "vocabularyName") {
+            // store projectTitle to be used by header.ejs
+            app.locals.projectTitle = obj[k];
+          } else if (k === "turtleEditor") { //menu[0]
+            menu[0] = 'ture';
+            // do more stuff
+          } else if (k === "documentationGeneration") { //menu[1]
+            menu[1] = 'ture';
+          } else if (k === "visualization") { //menu[2]
+            menu[2] = 'ture';
+          } else if (k === "sparqlEndPoint") { //menu[3]
+            menu[3] = 'ture';
+          } else if (k === "evolutionReport") { //menu[4]
+            menu[4] = 'ture';
+          } else if (k === "predefinedQueries") { //menu[5]
+            menu[5] = 'ture';
+          } else if (k === "syntaxValidation") { //menu[6]
+            menu[6] = 'ture';
+          }
+        });
+        // store menu to be used by header.ejs
+        app.locals.userConfigurations = menu;
+      })
+    }
+  });});
+
 
 function isEmptyObject(obj) {
   for (var key in obj) {
