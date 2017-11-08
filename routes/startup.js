@@ -14,53 +14,18 @@ router.get('/', function(req, res) {
     extended: true
   }));
   shell.exec('pwd').stdout;
+  //console.log(process.cwd());
   // check if the userConfigurations file is exist
   // for the first time of app running
   var path = "jsonDataFiles/userConfigurations.json";
+  console.log(path);
   fs.exists(path, function(exists) {
     if (exists) {
       jsonfile.readFile(path, function(err, obj)  {
         if (err)
           console.log(err);
-        // dispaly the configurations     
-        console.log(obj);
 
-
-        // TODO:qonsole-config.js
-        //  contents = fs.readFileSync('templates/templateQonsole-config.js', 'utf8');
-        //
-        //
-        //      var exampleQueries = `
-        //
-        //     { "name": "Selection of triples",
-        //       "query": "SELECT ?subject ?predicate ?object\\nWHERE { " +
-        //                "  ?subject ?predicate ?object\\n}\\n" +
-        //                "LIMIT 25"
-        //     },
-        //     { "name": "Selection of classes",
-        //       "query": "SELECT DISTINCT ?class ?label ?description\\nWHERE {\\n" +
-        //                "  ?class a owl:Class.\\n" +
-        //                "  OPTIONAL { ?class rdfs:label ?label}\\n" +
-        //                "  OPTIONAL { ?class rdfs:comment ?description}\\n}\\n" +
-        //                "LIMIT 25",
-        //       "prefixes": ["owl", "rdfs"]
-        //     }
-        //
-        // `;
-        //
-        //    contents = contents.replace('#PredefinedQueries', exampleQueries);
-        //
-        //
-        //  fs.writeFile("/home/vagrant/fuseki/apache-jena-fuseki-2.3.0/webapp/js/app/qonsole-config.js", contents, function(err) {
-        //       if(err) {
-        //           return console.log(err);
-        //       }
-        //  });
-        //
-        //  console.log('File qonsole-config.js saved.');
-        //
-
-        // give permission to the root of the project
+        // get out of the root of the VoColApp folder
         shell.cd('..');
         //shell.exec('chmod -R u+x .');
 
@@ -68,6 +33,10 @@ router.get('/', function(req, res) {
         var webHook = (obj.hasOwnProperty('webHook')) ? true : false;
         var turtleEditor = (obj.turtleEditor === "true") ? true : false;
         var removeHistory = false;
+        var repositoryURL = obj.repositoryURL;
+        repositoryURL = repositoryURL.trim();
+        if (repositoryURL [repositoryURL.length - 1] === ('/'))
+          repositoryURL = repositoryURL.slice(0, -1);
 
         //#echo "${repository:0:8}${user}:${password}@${repository:8}.git"
 
@@ -102,19 +71,22 @@ router.get('/', function(req, res) {
             shell.cd("..");
             shell.rm("-rf", "repoFolder");
             //TODO*:change  the following login
-            //shell.exec('git clone "${repository:0:8}${user}:${password}@${repository:8}.git" repoFolder',{silent:false}).stdout;
-            shell.exec('git clone "' + obj.repositoryURL + '" repoFolder', {
-              silent: false
-            }).stdout;
+            //shell.exec('git clone "https://' + obj.user + ':' + obj.password + '@' + obj.repositoryURL.slice(8)+'" repoFolder',{silent:false}).stdout;
+             shell.exec('git clone "' + repositoryURL + '" repoFolder', {
+               silent: false
+             }).stdout;
             shell.cd("repoFolder");
             removeHistory = true;
           }
         } else {
           //TODO*:change  the following login
-          //shell.exec('git clone "${repository:0:8}${user}:${password}@${repository:8}.git" repoFolder',{silent:false}).stdout;
-          shell.exec('git clone "' + obj.repositoryURL + '" repoFolder', {
-            silent: false
-          }).stdout;
+          shell.mkdir("repoFolder");
+          //shell.exec('git clone "https://' + obj.user + ':""' + obj.password + '"@' + obj.repositoryURL.slice(8)+'" repoFolder',{silent:false}).stdout;
+          //shell.cd("repoFolder");
+
+          shell.exec('git clone "' + repositoryURL + '" repoFolder', {
+             silent: false
+           }).stdout;
           shell.cd("repoFolder");
           removeHistory = true;
         }
@@ -149,171 +121,6 @@ router.get('/', function(req, res) {
         //********************************************************************
         //********************************************************************
 
-        //TODO:if client hooks is clicked then add then otherwise remove it
-        // if [ ! -d "VoColClient" ]; then
-        //  git rm -r -f VoColClient
-        // fi
-        //
-        //
-
-
-        ////////////////////////////////////////////////////////////////////
-        // client hooks
-        ////////////////////////////////////////////////////////////////////
-        //TODO: just disable for testing perpose
-        // if (obj.clientHooks === "true") {
-        //   shell.exec("pwd"); // in repoFolder path
-        //
-        //   shell.cd("../repoFolder"); // in repoFolder path
-        //   //shell.mkdir('-p', 'VoColClient');
-        //   shell.cp('-r', '../VoColApp/helper/tools/VoColClient/Hooks', 'VoColClient/');
-        //   shell.cd('-p', 'VoColClient/Hooks');
-        //   //TODO:
-        //   var serverURL = "${" + obj.server + "//\//\\/}"
-        //   //
-        //   shell.sed('-i', "s/ServerURL/" + serverURL + "/g" + ' pre-commit', {
-        //     silent: false
-        //   }).stdout;
-        //   shell.exec('pwd');
-        //   shell.cd("../../repoFolder"); // in repoFolder path
-        //   shell.exec('git config user.email "' + obj.user + '@vocol.com"', {
-        //     silent: false
-        //   }).stdout;
-        //   shell.exec('git config user.name ' + obj.user, {
-        //     silent: false
-        //   }).stdout;
-        //   shell.exec('git add .', {
-        //     silent: false
-        //   }).stdout;
-        //   shell.exec('git commit -m "configuration of repository"', {
-        //     silent: false
-        //   }).stdout;
-        //   //TODO*:change  the following login
-        //   //shell.exec('git clone "${repository:0:8}${user}:${password}@${repository:8}.git" repoFolder',{silent:false}).stdout;
-        //   if (obj.repositoryService === 'gitHub')
-        //     shell.exec('git push "https://' + obj.user + ':' + obj.password + '@' + obj.repositoryURL.slice(8) + '"  repoFolder', {
-        //       silent: false
-        //     }).stdout;
-        //   else if (obj.repositoryService === 'gitLab')
-        //     shell.exec('git push https://' + obj.user + ':' + obj.password + '@gitlab.com/"' + obj.repositoryName + '".git master', {
-        //       silent: false
-        //     }).stdout;
-        //   else if (obj.repositoryService === 'BitBucket')
-        //     shell.exec('git push https://' + obj.user + ':' + obj.password + '@bitbucket.org/"' + obj.repositoryName + '".git', {
-        //       silent: false
-        //     }).stdout;
-        //   // #GitLab git push https://${user}:${password}@gitlab.com/"${repositoryNamespace}".git master
-        //
-        //   //  git push "${repository:0:8}${user}:${password}@${repository:8}.git"
-        //   //
-        //   //
-        //   // #BitBucket git push https://${user}:${password}@bitbucket.org/"${repositoryNamespace}".git
-        //   //
-        //   shell.cd('../..'); //VoColClient
-        //   //TODO*: do we need to do  the below commands
-        //   // fuser -k 3002/tcp
-        //   // node clientServices.js "Rapper" "consistencyChecking" "constraintChecking" "formatting" &
-        // }
-
-        ////////////////////////////////////////////////////////////////////
-        //// clientHooks
-        //////////////////////////////////////////////////////////////////////
-
-
-        // +if [ "$clientHooks" == "clientHooksChecked" ]; then
-        //
-        // +mkdir -p /home/vagrant/repoFolder/VoColClient
-        //
-        // cp -r /home/vagrant/VoColClient/Hooks /home/vagrant/repoFolder/VoColClient
-        //
-        // cd /home/vagrant/repoFolder/VoColClient/Hooks
-        //
-        // serverURL="${server//\//\\/}"
-        //
-        // sed -i "s/ServerURL/${serverURL}/g" pre-commit
-        //
-        // git config user.email "${user}@vocol.com"
-        // git config user.name ${user}
-        //
-        // git add .
-        //
-        // git commit -m "configuration of repository"
-        //
-        //  git push "${repository:0:8}${user}:${password}@${repository:8}.git"
-        //
-        // #GitLab git push https://${user}:${password}@gitlab.com/"${repositoryNamespace}".git master
-        //
-        // #BitBucket git push https://${user}:${password}@bitbucket.org/"${repositoryNamespace}".git
-        //
-        // cd /home/vagrant/VoCol
-        // fuser -k 3002/tcp
-        // node clientServices.js "Rapper" "consistencyChecking" "constraintChecking" "formatting" &
-        //
-        // fi
-        //
-        //
-
-
-        ////////////////////////////////////////////////////////////////////
-        //// TurtleEditor
-        //////////////////////////////////////////////////////////////////////
-        if (turtleEditor === true && obj.repositoryService === "gitHub") {
-          shell.exec('pwd', {
-            silent: false
-          }).stdout;
-          // filePath where we read from
-          var filePath = '../VoColApp/views/turtleEditor/js/turtle-editor.js';
-          // read contents of the file with the filePath
-          var contents = fs.readFileSync(filePath, 'utf8');
-          contents = contents.replace(/(owner\.val\(")(.*?)"/mg, "owner.val(\"" + obj.repositoryOwner + "\"");
-          contents = contents.replace(/(repo\.val\(")(.*?)"/mg, "repo.val(\"" + obj.repositoryName + "\"");
-          // write back to the file with the filePath
-          fs.writeFileSync(filePath, contents);
-
-        }
-
-
-        ////////////////////////////////////////////////////////////////////
-        //// webHook
-        //////////////////////////////////////////////////////////////////////
-        if (webHook === true) {
-          //   shell.echo("");
-          //   if (obj.repositoryService === 'gitHub') {
-          //     shell.exec('curl -u "' + obj.user + ':' + obj.password + '" -i  https://api.github.com/hub -F "hub.mode=subscribe"  -F "hub.topic=' + obj.repositoryName + '/events/push.json"  -F "hub.callback=' + obj.server + '/push"', {
-          //       silent: false
-          //     }).stdout;
-          //   } else if (obj.repositoryService === 'gitLab') {
-          //     shell.exec('git push https://' + obj.user + ':' + obj.password + '@gitlab.com/"' + obj.repositoryName + '".git master', {
-          //       silent: false
-          //     }).stdout;
-
-          //TODO: for gitLab
-          //  #GitLab res=$(curl https://gitlab.com/api/v3/session --data "login=${user}&password=${password}")
-          //
-          //  #GitLab private_token=""
-          //
-          //  #GitLab temp=`echo $res | sed 's/\\\\\//\//g' | sed 's/[{}]//g' | awk -v k="private_token" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w private_token`
-          //  #GitLab   private_token=${temp##*|}
-          //
-          //  #GitLab repositoryNamespaceReplaced="${repositoryNamespace/\//%2F}"
-          //
-          //  #GitLab curl --header "PRIVATE-TOKEN: ${private_token}" -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{ \"id\": \"${repositoryNamespace}\", \"url\": \"${server}/push\", \"push_events\": \"true\"}" https://gitlab.com/api/v3/projects/"${repositoryNamespaceReplaced}"/hooks
-
-          //} else
-          if (obj.repositoryService === 'BitBucket') {
-            shell.exec('curl -v -H "Content-Type: application/json" -X POST --data "{\"description\": \"VoCol\", \"url\": \"' + obj.server + '/push\", \"active\": true, \"events\": [  \"repo:push\",  \"issue:created\", \"issue:updated\" ] }" https://' + obj.user + ':' + obj.password + '@api.bitbucket.org/2.0/repositories/' + obj.repositoryName + '/hooks', {
-              silent: false
-            }).stdout;
-          }
-
-          //TODO: do we need to run this script again
-          // cd /home/vagrant/VoCol
-          // fuser -k 3001/tcp
-          // node webHookListener.js &
-
-
-        }
-
 
         var repositoryService = obj.repositoryService;
         var repositoryNameParam = obj.repositoryName;
@@ -321,7 +128,7 @@ router.get('/', function(req, res) {
         //TODO: which value goes here
         var otherBranchesParam = '#otherBranchesParam';
 
-        var port = 3001;
+        //var port = 3001;
 
         // app.set('port', port);
         // //TODO: enable listening to the port
@@ -364,9 +171,9 @@ router.get('/', function(req, res) {
         //
         //             commitMessage = commitMessage.replace(/\n/g, '');
 
-        shell.cd('../../repoFolder', {
-          silent: false
-        }).stdout;
+        // shell.cd('../../repoFolder', {
+        //   silent: false
+        // }).stdout;
         shell.exec('git checkout ${2}', {
           silent: false
         }).stdout;
@@ -378,7 +185,7 @@ router.get('/', function(req, res) {
         }).stdout;
 
 
-        shell.rm('-f', '../VoColApp/jsonDataFiles/syntaxErrors.json').stdout;
+        shell.exec('echo -n > ../VoColApp/jsonDataFiles/syntaxErrors.json').stdout;
         var pass = true;
         var data = shell.exec('find . -type f -name \'*.ttl\'', {
           silent: false
@@ -410,6 +217,9 @@ router.get('/', function(req, res) {
           var filePath = '../VoColApp/jsonDataFiles/syntaxErrors.json';
           fs.writeFileSync(filePath, errors);
           console.log("Errors file is generated\n");
+          shell.cd('../VoColApp/');
+          shell.exec('pwd').stdout
+
         }
 
         //if no syntax errors, then contiune otherwise stop
@@ -435,81 +245,260 @@ router.get('/', function(req, res) {
 
           // display visualization part if the user selected it from the configuration page
           if (obj.visualization === "true") {
+            shell.exec('pwd');
             shell.cd('../owl2vowl/').stdout;
             shell.exec('java -jar owl2vowl.jar -file ../serializations/SingleVoc.ttl', {
               silent: false
             }).stdout;
-            shell.mv('SingleVoc.json', '../../../views/webvowl/js/data').stdout;
+            shell.mv('SingleVoc.json', '../../../views/webvowl/js/data/').stdout;
           }
 
-          // Evolution Part
-          if (fs.existsSync('../serializations/SingleVoc.ttl')) {
-            shell.cd('../owl2vcs/').stdout;
-            //  shell.mkdir('../evolution');
-
-            var evolutionReport = shell.exec('./owl2diff ../evolution/SingleVoc.ttl ../serializations/SingleVoc.ttl', {
+          ////////////////////////////////////////////////////////////////////
+          //// TurtleEditor
+          //////////////////////////////////////////////////////////////////////
+          if (turtleEditor === true && obj.repositoryService === "gitHub") {
+            shell.exec('pwd', {
               silent: false
             }).stdout;
-            if (evolutionReport.includes('identical')) {
+            // filePath where we read from
+            var filePath = '../../../views/turtleEditor/js/turtle-editor.js';
+            // read contents of the file with the filePath
+            var contents = fs.readFileSync(filePath, 'utf8');
+            contents = contents.replace(/(owner\.val\(")(.*?)"/mg, "owner.val(\"" + obj.repositoryOwner + "\"");
+            contents = contents.replace(/(repo\.val\(")(.*?)"/mg, "repo.val(\"" + obj.repositoryName + "\"");
+            // write back to the file with the filePath
+            fs.writeFileSync(filePath, contents);
 
-              var constantString = shell.exec('diff SingleVoc.ttl  ../serializations/SingleVoc.ttl', {
+          }
+
+          if(evolutionReport === "true"){
+            // Evolution Part
+            if (fs.existsSync('../serializations/SingleVoc.ttl')) {
+              shell.cd('../owl2vcs/').stdout;
+              //  shell.mkdir('../evolution');
+
+              var evolutionReport = shell.exec('./owl2diff ../evolution/SingleVoc.ttl ../serializations/SingleVoc.ttl', {
                 silent: false
               }).stdout;
-              console.log(constantString);
+              // write repoter on evolutionReport.txt file 
+              fs.writeFileSync('../evolution/evolutionReport.txt',evolutionReport,'utf8');
+              if (evolutionReport.includes('identical')) {
+
+                var constantString = 'diff SingleVoc.ttl  ../serializations/SingleVoc.ttl';
+                console.log(constantString);
+              }
+              // Do something
             }
-            // Do something
+            console.log(evolutionReport);
+            shell.exec('pwd', {
+              silent: false
+            }).stdout;
+            shell.mkdir('../evolution').stdout;
+            shell.cp('../serializations/SingleVoc.ttl', '../evolution/SingleVoc.ttl').stdout;
+
+            //
+            //evolutionReport = $(. / owl2diff / home / vagrant / VoCol / evolution / SingleVoc.ttl / home / vagrant / repoFolder / SingleVoc.ttl - c 2 > & 1)
+            //
+            //if echo $evolutionReport | grep - q - v "identical";
+            // then
+            //
+            // # Evolution fileContent = `cat /home/vagrant/schemaorg/docs/evolution.html`
+            // #Evolution constant_string = "diff SingleVoc.ttl /home/vagrant/repoFolder/SingleVoc.ttl"#
+            // Evolution generationDate = $(date "+%d-%m-%Y %H-%M-%S")# Evolution openTag = "<"#
+            // Evolution closeTag = ">"#
+            // Evolution openTagHtml = "&lt;"#
+            // Evolution closeTagHtml = "&gt;"#
+            // Evolution reportDiv = "<div> </div>"#
+            // Evolution add = "+ "#
+            // Evolution del = "- "#
+            // Evolution reportBreakInAddition = "</br>+"#
+            // Evolution reportBreakInDeletion = "</br>-"#
+            // Evolution evolutionReport = "${evolutionReport//$openTag/$openTagHtml}"#
+            // Evolution evolutionReport = "${evolutionReport//$closeTag/$closeTagHtml}"#
+            // Evolution evolutionReport = "${evolutionReport/$constant_string/}"#
+            // Evolution evolutionReport = "${evolutionReport//$del/$reportBreakInDeletion}"#
+            // Evolution evolutionReport = "${evolutionReport//$add/$reportBreakInAddition}"
+            //
+            // #Evolution uniqueID = $(cat / proc / sys / kernel / random / uuid)
+            // # Evolution result_Content = "${fileContent/$reportDiv/$reportDiv</hr></br><div id=\"$uniqueID\">${1}:$generationDate$evolutionReport</div></br>}"
+            // #Evolution echo "${result_Content}" > /home/vagrant / schemaorg / docs / evolution.html# Evolution rm / home / vagrant / VoCol / evolution / SingleVoc.ttl
+            // # Evolution cd / home / vagrant / VoCol
+            // # Evolution node helper.js $uniqueID "\"${1}\""
+            // # Evolution fi# Evolution fi
+            //
+            // # Evolution cp / home / vagrant / repoFolder / SingleVoc.ttl / home / vagrant / VoCol / evolution / SingleVoc.ttl
+
+
+            // shell.rm('-f', '/home/vagrant/VoCol/evolution/SingleVoc.ttl', {
+            //   silent: false
+            // }).stdout;
+            // shell.exec('echo -n "[]" > schemaorg/docs/data.json', {
+            //   silent: false
+            // }).stdout;
+            // if (removeHistory === true) {
+            //   shell.cp('/home/vagrant/VoCol/templates/evolutionTemplate.html', 'schemaorg/docs/evolution.html', {
+            //     silent: false
+            //   }).stdout;
+            //   shell.rm('-f', '/home/vagrant/VoCol/evolution/SingleVoc.ttl', {
+            //     silent: false
+            //   }).stdout;
+            //   shell.exec('echo -n "[]" > schemaorg/docs/data.json', {
+            //     silent: false
+            //   }).stdout;
+            // }
+            //  rm /home/vagrant/VoCol/evolution/SingleVoc.ttl
+            //  echo -n "[]" > /home/vagrant/schemaorg/docs/data.json
+            //
+            //  if [ "$removeHistory" = true ]; then
+            //
+            //  cp /home/vagrant/VoCol/templates/evolutionTemplate.html /home/vagrant/schemaorg/docs/evolution.html
+            //  rm /home/vagrant/VoCol/evolution/SingleVoc.ttl
+            //  echo -n "[]" > /home/vagrant/schemaorg/docs/data.json
+            //
+            //  fi
+            //
+
+
+
+            shell.exec('pwd');
+
           }
-          console.log(evolutionReport);
-          shell.exec('pwd', {
-            silent: false
-          }).stdout;
-          shell.mkdir('../evolution').stdout;
-          shell.cp('../serializations/SingleVoc.ttl', '../evolution/SingleVoc.ttl').stdout;
 
+          ////////////////////////////////////////////////////////////////////
+          // client hooks
+          ////////////////////////////////////////////////////////////////////
+          //TODO: just disable for testing perpose
+          // if (obj.clientHooks === "true") {
+          //   shell.exec("pwd"); // in repoFolder path
           //
-          //evolutionReport = $(. / owl2diff / home / vagrant / VoCol / evolution / SingleVoc.ttl / home / vagrant / repoFolder / SingleVoc.ttl - c 2 > & 1)
+          //   shell.cd("../repoFolder"); // in repoFolder path
+          //   //shell.mkdir('-p', 'VoColClient');
+          //   shell.cp('-r', '../VoColApp/helper/tools/VoColClient/Hooks', 'VoColClient/');
+          //   shell.cd('-p', 'VoColClient/Hooks');
+          //   //TODO:
+          //   var serverURL = "${" + obj.server + "//\//\\/}"
+          //   //
+          //   shell.sed('-i', "s/ServerURL/" + serverURL + "/g" + ' pre-commit', {
+          //     silent: false
+          //   }).stdout;
+          //   shell.exec('pwd');
+          //   shell.cd("../../repoFolder"); // in repoFolder path
+          //   shell.exec('git config user.email "' + obj.user + '@vocol.com"', {
+          //     silent: false
+          //   }).stdout;
+          //   shell.exec('git config user.name ' + obj.user, {
+          //     silent: false
+          //   }).stdout;
+          //   shell.exec('git add .', {
+          //     silent: false
+          //   }).stdout;
+          //   shell.exec('git commit -m "configuration of repository"', {
+          //     silent: false
+          //   }).stdout;
+          //   //TODO*:change  the following login
+          //   //shell.exec('git clone "${repository:0:8}${user}:${password}@${repository:8}.git" repoFolder',{silent:false}).stdout;
+          //   if (obj.repositoryService === 'gitHub')
+          //     shell.exec('git push "https://' + obj.user + ':' + obj.password + '@' + obj.repositoryURL.slice(8) + '"  repoFolder', {
+          //       silent: false
+          //     }).stdout;
+          //   else if (obj.repositoryService === 'gitLab')
+          //     shell.exec('git push https://' + obj.user + ':' + obj.password + '@gitlab.com/"' + obj.repositoryName + '".git master', {
+          //       silent: false
+          //     }).stdout;
+          //   else if (obj.repositoryService === 'BitBucket')
+          //     shell.exec('git push https://' + obj.user + ':' + obj.password + '@bitbucket.org/"' + obj.repositoryName + '".git', {
+          //       silent: false
+          //     }).stdout;
+          //   // #GitLab git push https://${user}:${password}@gitlab.com/"${repositoryNamespace}".git master
           //
-          //if echo $evolutionReport | grep - q - v "identical";
-          // then
+          //   //  git push "${repository:0:8}${user}:${password}@${repository:8}.git"
+          //   //
+          //   //
+          //   // #BitBucket git push https://${user}:${password}@bitbucket.org/"${repositoryNamespace}".git
+          //   //
+          //   shell.cd('../..'); //VoColClient
+          //   //TODO*: do we need to do  the below commands
+          //   // fuser -k 3002/tcp
+          //   // node clientServices.js "Rapper" "consistencyChecking" "constraintChecking" "formatting" &
+          // }
+
+          ////////////////////////////////////////////////////////////////////
+          //// clientHooks
+          //////////////////////////////////////////////////////////////////////
+
+
+          // +if [ "$clientHooks" == "clientHooksChecked" ]; then
           //
-          // # Evolution fileContent = `cat /home/vagrant/schemaorg/docs/evolution.html`
-          // #Evolution constant_string = "diff SingleVoc.ttl /home/vagrant/repoFolder/SingleVoc.ttl"#
-          // Evolution generationDate = $(date "+%d-%m-%Y %H-%M-%S")# Evolution openTag = "<"#
-          // Evolution closeTag = ">"#
-          // Evolution openTagHtml = "&lt;"#
-          // Evolution closeTagHtml = "&gt;"#
-          // Evolution reportDiv = "<div> </div>"#
-          // Evolution add = "+ "#
-          // Evolution del = "- "#
-          // Evolution reportBreakInAddition = "</br>+"#
-          // Evolution reportBreakInDeletion = "</br>-"#
-          // Evolution evolutionReport = "${evolutionReport//$openTag/$openTagHtml}"#
-          // Evolution evolutionReport = "${evolutionReport//$closeTag/$closeTagHtml}"#
-          // Evolution evolutionReport = "${evolutionReport/$constant_string/}"#
-          // Evolution evolutionReport = "${evolutionReport//$del/$reportBreakInDeletion}"#
-          // Evolution evolutionReport = "${evolutionReport//$add/$reportBreakInAddition}"
+          // +mkdir -p /home/vagrant/repoFolder/VoColClient
           //
-          // #Evolution uniqueID = $(cat / proc / sys / kernel / random / uuid)
-          // # Evolution result_Content = "${fileContent/$reportDiv/$reportDiv</hr></br><div id=\"$uniqueID\">${1}:$generationDate$evolutionReport</div></br>}"
-          // #Evolution echo "${result_Content}" > /home/vagrant / schemaorg / docs / evolution.html# Evolution rm / home / vagrant / VoCol / evolution / SingleVoc.ttl
-          // # Evolution cd / home / vagrant / VoCol
-          // # Evolution node helper.js $uniqueID "\"${1}\""
-          // # Evolution fi# Evolution fi
+          // cp -r /home/vagrant/VoColClient/Hooks /home/vagrant/repoFolder/VoColClient
           //
-          // # Evolution cp / home / vagrant / repoFolder / SingleVoc.ttl / home / vagrant / VoCol / evolution / SingleVoc.ttl
+          // cd /home/vagrant/repoFolder/VoColClient/Hooks
+          //
+          // serverURL="${server//\//\\/}"
+          //
+          // sed -i "s/ServerURL/${serverURL}/g" pre-commit
+          //
+          // git config user.email "${user}@vocol.com"
+          // git config user.name ${user}
+          //
+          // git add .
+          //
+          // git commit -m "configuration of repository"
+          //
+          //  git push "${repository:0:8}${user}:${password}@${repository:8}.git"
+          //
+          // #GitLab git push https://${user}:${password}@gitlab.com/"${repositoryNamespace}".git master
+          //
+          // #BitBucket git push https://${user}:${password}@bitbucket.org/"${repositoryNamespace}".git
+          //
+          // cd /home/vagrant/VoCol
+          // fuser -k 3002/tcp
+          // node clientServices.js "Rapper" "consistencyChecking" "constraintChecking" "formatting" &
+          //
+          // fi
+          //
 
-          // Kill VoColApp process if running
-          // shell.exec('fuser -k 3000/tcp', {
-          //   silent: false
-          // }).stdout;
+          ////////////////////////////////////////////////////////////////////
+          //// webHook
+          //////////////////////////////////////////////////////////////////////
+          if (webHook === true) {
+            //   shell.echo("");
+            //   if (obj.repositoryService === 'gitHub') {
+            //     shell.exec('curl -u "' + obj.user + ':' + obj.password + '" -i  https://api.github.com/hub -F "hub.mode=subscribe"  -F "hub.topic=' + obj.repositoryName + '/events/push.json"  -F "hub.callback=' + obj.server + '/push"', {
+            //       silent: false
+            //     }).stdout;
+            //   } else if (obj.repositoryService === 'gitLab') {
+            //     shell.exec('git push https://' + obj.user + ':' + obj.password + '@gitlab.com/"' + obj.repositoryName + '".git master', {
+            //       silent: false
+            //     }).stdout;
 
-          //shell.cd('../../../.').stdout;
-          shell.exec('pwd');
+            //TODO: for gitLab
+            //  #GitLab res=$(curl https://gitlab.com/api/v3/session --data "login=${user}&password=${password}")
+            //
+            //  #GitLab private_token=""
+            //
+            //  #GitLab temp=`echo $res | sed 's/\\\\\//\//g' | sed 's/[{}]//g' | awk -v k="private_token" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w private_token`
+            //  #GitLab   private_token=${temp##*|}
+            //
+            //  #GitLab repositoryNamespaceReplaced="${repositoryNamespace/\//%2F}"
+            //
+            //  #GitLab curl --header "PRIVATE-TOKEN: ${private_token}" -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{ \"id\": \"${repositoryNamespace}\", \"url\": \"${server}/push\", \"push_events\": \"true\"}" https://gitlab.com/api/v3/projects/"${repositoryNamespaceReplaced}"/hooks
+
+            //} else
+            // if (obj.repositoryService === 'BitBucket') {
+            //   shell.exec('curl -v -H "Content-Type: application/json" -X POST --data "{\"description\": \"VoCol\", \"url\": \"' + obj.server + '/push\", \"active\": true, \"events\": [  \"repo:push\",  \"issue:created\", \"issue:updated\" ] }" https://' + obj.user + ':' + obj.password + '@api.bitbucket.org/2.0/repositories/' + obj.repositoryName + '/hooks', {
+            //     silent: false
+            //   }).stdout;
+            // }
+
+            //TODO: do we need to run this script again
+            // cd /home/vagrant/VoCol
+            // fuser -k 3001/tcp
+            // node webHookListener.js &
 
 
-        //  shell.exec('npm start &').stdout;
-          //const child = spawn('npm', ['start', '&']);
-
+          }
           // run external bash script to start up both fuseki-server and VoColApp
           const child = spawn('sh', ['../../scripts/run.sh', '&']);
           // show output live of process on std
@@ -518,8 +507,12 @@ router.get('/', function(req, res) {
           shell.cd('../../../.').stdout;
           // redirect to the start page
           res.redirect('/');
-
-
+        }
+        else // if it has syntaxErrors
+        {
+          shell.exec('pwd');
+          shell.cd('../VoColApp/').stdout;
+          res.redirect('/validation');
         }
         //       }
         //

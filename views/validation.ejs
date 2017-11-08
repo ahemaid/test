@@ -2,9 +2,31 @@
 <div style="margin-top: 5% !important;"></div>
 <h1><%- title %></h1>
 <br/>
-<% if(syntaxErrorsBlink === true)  { %>
+<% if(isExistSyntaxError)  { %>
 <%- syntaxErrors %>
+<h3 style="color:red">Please fix the error(s) in the turtle file(s),<br/> then refill again the configurations by click the configuration page tab above.</h3>
 <% } else{%>
 <h2>No errors were found</h2>
 <% }%>
 <% include footer %>
+<script>
+
+  // to blink if there is syntax errors
+  if (<%- isExistSyntaxError %>){
+    setInterval(function() {
+      $('#validationLi').transition('flash');
+      $("#validationLi").css({"backgroundColor":"yellow"});
+    }, 1000);
+    if(<%- hasPreviousValidOntology %>){
+      $('#editingLi').remove();
+      $('#visualizationLi').remove();
+      $('#documentationLi').remove();
+      $('#queryingLi').remove();
+      $('#evolutionLi').remove();
+      $('#leftHeaderUl').append('<li><a href="/config">Configuration Form</a></li>');
+      $('#homeLi').remove();
+    }
+debugger;
+  }
+
+</script>

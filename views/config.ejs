@@ -37,7 +37,7 @@
                   <a class="ui left label" style="width: 150px;">
           Vocabulary Name
         </a>
-                  <input type="text" id="vocabularyName" name="vocabularyName" placeholder="Enter vocabulary name" value="Mobivoc" style="width:300px" />
+                  <input type="text" id="vocabularyName" name="vocabularyName" placeholder="Enter vocabulary name" value="Mobivoc"  />
                   <div class="ui corner label">
                     <i class="asterisk icon"></i>
                   </div>
@@ -48,7 +48,7 @@
                   <a class="ui left label" style="width: 150px;">
           Domain name
         </a>
-                  <input type="text" id="server" name="server" placeholder="Enter domain name" value="http://vocol.vagrantshare.com" style="width:300px" />
+                  <input type="text" id="server" name="server" placeholder="Enter domain name" value="http://vocol.vagrantshare.com"  />
                   <div class="ui corner label">
                     <i class="asterisk icon"></i>
                   </div>
@@ -70,7 +70,7 @@
                   <a class="ui label" style="width: 150px;">
           Repository URL
         </a>
-                  <input type="text" id="repositoryURL" name="repositoryURL" placeholder="Enter repository address" value="https://github.com/repositoryOwner/repositoryName.git     " style="width:300px" />
+                  <input type="text" id="repositoryURL" name="repositoryURL" placeholder="Enter repository address" value="https://github.com/repositoryOwner/repositoryName.git      "  />
                   <div class="ui corner label">
                     <i class="asterisk icon"></i>
                   </div>
@@ -81,7 +81,7 @@
                   <a class="ui label" style="width: 150px;">
           Repository owner
         </a>
-                  <input type="text" id="repositoryOwner" name="repositoryOwner" placeholder="Enter repository owner" value="repositoryOwner" style="width:300px" />
+                  <input type="text" id="repositoryOwner" name="repositoryOwner" placeholder="Enter repository owner" value="repositoryOwner"  />
                 </div>
               </div>
               <div class="field" style="margin-bottom:5px">
@@ -89,7 +89,7 @@
                   <a class="ui label" style="width: 150px;">
           Repository name
         </a>
-                  <input type="text" id="repositoryName" name="repositoryName" placeholder="Enter repository name" value="repositoryName" style="width:300px" />
+                  <input type="text" id="repositoryName" name="repositoryName" placeholder="Enter repository name" value="repositoryName"  />
                 </div>
               </div>
 
@@ -98,7 +98,7 @@
                   <a class="ui label" style="width: 150px;">
           Branch Name
         </a>
-                  <input type="text" id="branchName" name="branchName" placeholder="Enter branch name" value="master" style="width:300px" />
+                  <input type="text" id="branchName" name="branchName" placeholder="Enter branch name" value="master"  />
                   <div class="ui corner label">
                     <i class="asterisk icon"></i>
                   </div>
@@ -111,7 +111,7 @@
                   <a class="ui label" style="width: 150px;">
           User
         </a>
-                  <input type="text" id="user" name="user" placeholder="Enter repository user" value="lavhal" style="width:300px" />
+                  <input type="text" id="user" name="user" placeholder="Enter repository user" value="lavhal"  />
                   <div class="ui corner label">
                     <i class="asterisk icon"></i>
                   </div>
@@ -122,7 +122,7 @@
                   <a class="ui label" style="width: 150px;">
           Password
         </a>
-                  <input type="password" id="password" name="password" placeholder="Enter repository password" style="width:300px" />
+                  <input type="password" id="password" name="password" placeholder="Enter repository password"  />
                   <div class="ui corner label">
                     <i class="asterisk icon"></i>
                   </div>
@@ -202,7 +202,7 @@ Repository service         </a>
               <div class="field">
                 <div class="ui checkbox">
                   <input type="checkbox" name="sparqlEndPoint" value="true" checked>
-                  <label>Sparql EndPoint</label>
+                  <label>SPARQL Endpoint</label>
                 </div>
               </div>
               <div class="field">
@@ -386,6 +386,7 @@ Repository service         </a>
   CKEDITOR.replace('editor1');
   //CKEDITOR.instances['#editor1'].updateElement();
   //alert($('.ckeditor').val());
+  $('#text').val(text);
   CKEDITOR.instances['editor1'].on('change', function() {
     $('#text').val(CKEDITOR.instances.editor1.getData());
   });

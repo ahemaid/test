@@ -4,7 +4,7 @@ var router = express.Router();
 var fs = require('fs');
 
 router.get('/', function(req, res) {
-
+console.log(process.cwd());
   var filePath = 'jsonDataFiles/RDFSConcepts.json'
   fs.exists(filePath, function(exists) {
     if (exists) {

@@ -12,6 +12,7 @@ var visualization = require('./routes/visualization');
 var turtleEditorLink = require('./routes/turtleEditor');
 var evolution = require('./routes/evolution');
 var startup = require('./routes/startup');
+var validation = require('./routes/validation');
 var fs = require('fs');
 var  jsonfile  =  require('jsonfile');
 var app = express();
@@ -44,6 +45,7 @@ app.use('/turtleEditorLink', express.static("views/turtleEditor"));
 app.use('/turtleEditor', turtleEditorLink);
 app.use('/evolution', evolution);
 app.use('/startup', startup);
+app.use('/validation', validation);
 
 
 
@@ -53,20 +55,6 @@ app.get('/config', function(req, res) {
   });
 });
 
-app.locals.syntaxErrorsBlink = false;
-
-var filePath = 'jsonDataFiles/syntaxErrors.json';
-if (fs.existsSync(filePath)) {
-  app.locals.syntaxErrors = fs.readFileSync(filePath, 'utf8');
-  app.locals.syntaxErrorsBlink = true;
-}
-
-
-app.get('/validation', function(req, res) {
-  res.render('validation.ejs', {
-    title: 'Syntax Validation::'
-  });
-});
 
 app.get('/querying', function(req, res) {
   res.render('querying.ejs', {
@@ -76,7 +64,7 @@ app.get('/querying', function(req, res) {
 
 // http post when  a user configurations is submitted
 app.post('/config', function(req, res) {
-  var filepath = 'jsonDataFiles/userConfigurations.json';
+  var filepath = __dirname + '/jsonDataFiles/userConfigurations.json';
   // Read the userConfigurations file if exsit to append new data
   jsonfile.readFile(filepath, function(err, obj)  {
     if (err)
@@ -91,46 +79,84 @@ app.post('/config', function(req, res) {
     })
   });
   res.render('userConfigurationsUpdated', {
-    title: 'System is making ready'
+    title: 'System Preparation'
   });
 });
+
+app.locals.isExistSyntaxError = false;
+var ErrorsFilePath = __dirname + '/jsonDataFiles/syntaxErrors.json';
+function readSyntaxErrorsFile() {
+  console.log('current path is '+process.cwd());
+  fs.exists(ErrorsFilePath, function(exists) {
+    if (exists) {
+      var data = fs.readFileSync(ErrorsFilePath);
+      if (data.toString().includes('Error')) {
+        app.locals.isExistSyntaxError = true;
+      }
+      else
+      {
+        app.locals.isExistSyntaxError = false;
+      }
+    }
+  });
+}
+watch(ErrorsFilePath, {
+  recursive: true
+}, function(evt, name) {
+  // call if SyntaxErrors file was changed
+  readSyntaxErrorsFile();
+});
+// call at the first time
+readSyntaxErrorsFile();
+
 
 
 // check if the userConfigurations file is exist
 // for the first time of app running
-console.log(process.cwd());
-var path = "jsonDataFiles/userConfigurations.json";
-watch(path, { recursive: true }, function(evt, name) {
+var path = __dirname + '/jsonDataFiles/userConfigurations.json';
+
+function readUserConfigurationFile() {
   fs.exists(path, function(exists) {
     if (exists) {
-      jsonfile.readFile(path, function(err, obj)  {
-        var menu = Array(7).fill('false');
-        Object.keys(obj).forEach(function(k) {
-          if (k === "vocabularyName") {
-            // store projectTitle to be used by header.ejs
-            app.locals.projectTitle = obj[k];
-          } else if (k === "turtleEditor") { //menu[0]
-            menu[0] = 'ture';
-            // do more stuff
-          } else if (k === "documentationGeneration") { //menu[1]
-            menu[1] = 'ture';
-          } else if (k === "visualization") { //menu[2]
-            menu[2] = 'ture';
-          } else if (k === "sparqlEndPoint") { //menu[3]
-            menu[3] = 'ture';
-          } else if (k === "evolutionReport") { //menu[4]
-            menu[4] = 'ture';
-          } else if (k === "predefinedQueries") { //menu[5]
-            menu[5] = 'ture';
-          } else if (k === "syntaxValidation") { //menu[6]
-            menu[6] = 'ture';
-          }
+      var data = fs.readFileSync(path);
+      if (data.includes('vocabularyName')) {
+        jsonfile.readFile(path, function(err, obj)  {
+          var menu = Array(7).fill(false);
+          Object.keys(obj).forEach(function(k) {
+            if (k === "vocabularyName") {
+              // store projectTitle to be used by header.ejs
+              app.locals.projectTitle = obj[k];
+            } else if (k === "turtleEditor") { //menu[0]
+              menu[0] = true;
+              // do more stuff
+            } else if (k === "documentationGeneration") { //menu[1]
+              menu[1] = true;
+            } else if (k === "visualization") { //menu[2]
+              menu[2] = true;
+            } else if (k === "sparqlEndPoint") { //menu[3]
+              menu[3] = true;
+            } else if (k === "evolutionReport") { //menu[4]
+              menu[4] = true;
+            } else if (k === "predefinedQueries") { //menu[5]
+              menu[5] = true;
+            } else if (k === "syntaxValidation") { //menu[6]
+              menu[6] = true;
+            }
+          });
+          app.locals.userConfigurations = menu;
         });
-        // store menu to be used by header.ejs
-        app.locals.userConfigurations = menu;
-      })
+      }
     }
-  });});
+  });
+}
+watch(path, {
+  recursive: true
+}, function(evt, name) {
+  // call if userConfigurations file was changed
+  readUserConfigurationFile();
+});
+// call at the first time
+readUserConfigurationFile();
 
 
 function isEmptyObject(obj) {
