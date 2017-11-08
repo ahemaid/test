@@ -86,7 +86,6 @@ app.post('/config', function(req, res) {
 app.locals.isExistSyntaxError = false;
 var ErrorsFilePath = __dirname + '/jsonDataFiles/syntaxErrors.json';
 function readSyntaxErrorsFile() {
-  console.log('current path is '+process.cwd());
   fs.exists(ErrorsFilePath, function(exists) {
     if (exists) {
       var data = fs.readFileSync(ErrorsFilePath);

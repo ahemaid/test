@@ -260,6 +260,7 @@ router.get('/', function(req, res) {
             shell.exec('pwd', {
               silent: false
             }).stdout;
+            console.log('I am herer sdfdsfdsf sfd sdfdsf dsfd sdf dsfsdf dsfd sfd');
             // filePath where we read from
             var filePath = '../../../views/turtleEditor/js/turtle-editor.js';
             // read contents of the file with the filePath
@@ -268,19 +269,19 @@ router.get('/', function(req, res) {
             contents = contents.replace(/(repo\.val\(")(.*?)"/mg, "repo.val(\"" + obj.repositoryName + "\"");
             // write back to the file with the filePath
             fs.writeFileSync(filePath, contents);
-
           }
 
-          if(evolutionReport === "true"){
+          if(obj.evolutionReport === "true"){
             // Evolution Part
-            if (fs.existsSync('../serializations/SingleVoc.ttl')) {
+            if (fs.existsSync('../evolution/SingleVoc.ttl')) {
               shell.cd('../owl2vcs/').stdout;
               //  shell.mkdir('../evolution');
-
+              console.log('Insde    hjhhkhlj kjhkh');
+              shell.exec('pwd');
               var evolutionReport = shell.exec('./owl2diff ../evolution/SingleVoc.ttl ../serializations/SingleVoc.ttl', {
                 silent: false
               }).stdout;
-              // write repoter on evolutionReport.txt file 
+              // write repoter on evolutionReport.txt file
               fs.writeFileSync('../evolution/evolutionReport.txt',evolutionReport,'utf8');
               if (evolutionReport.includes('identical')) {
 
@@ -295,7 +296,8 @@ router.get('/', function(req, res) {
             }).stdout;
             shell.mkdir('../evolution').stdout;
             shell.cp('../serializations/SingleVoc.ttl', '../evolution/SingleVoc.ttl').stdout;
-
+            console.log('dfgfdgjlkdfjg;kl jddfgdfgfdgdfg fgdfgdfgfdg');
+            shell.exec('pwd');
             //
             //evolutionReport = $(. / owl2diff / home / vagrant / VoCol / evolution / SingleVoc.ttl / home / vagrant / repoFolder / SingleVoc.ttl - c 2 > & 1)
             //
@@ -357,12 +359,7 @@ router.get('/', function(req, res) {
             //
             //  fi
             //
-
-
-
-            shell.exec('pwd');
-
-          }
+        }
 
           ////////////////////////////////////////////////////////////////////
           // client hooks
@@ -461,44 +458,44 @@ router.get('/', function(req, res) {
 
           ////////////////////////////////////////////////////////////////////
           //// webHook
-          //////////////////////////////////////////////////////////////////////
-          if (webHook === true) {
-            //   shell.echo("");
-            //   if (obj.repositoryService === 'gitHub') {
-            //     shell.exec('curl -u "' + obj.user + ':' + obj.password + '" -i  https://api.github.com/hub -F "hub.mode=subscribe"  -F "hub.topic=' + obj.repositoryName + '/events/push.json"  -F "hub.callback=' + obj.server + '/push"', {
-            //       silent: false
-            //     }).stdout;
-            //   } else if (obj.repositoryService === 'gitLab') {
-            //     shell.exec('git push https://' + obj.user + ':' + obj.password + '@gitlab.com/"' + obj.repositoryName + '".git master', {
-            //       silent: false
-            //     }).stdout;
-
-            //TODO: for gitLab
-            //  #GitLab res=$(curl https://gitlab.com/api/v3/session --data "login=${user}&password=${password}")
-            //
-            //  #GitLab private_token=""
-            //
-            //  #GitLab temp=`echo $res | sed 's/\\\\\//\//g' | sed 's/[{}]//g' | awk -v k="private_token" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w private_token`
-            //  #GitLab   private_token=${temp##*|}
-            //
-            //  #GitLab repositoryNamespaceReplaced="${repositoryNamespace/\//%2F}"
-            //
-            //  #GitLab curl --header "PRIVATE-TOKEN: ${private_token}" -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{ \"id\": \"${repositoryNamespace}\", \"url\": \"${server}/push\", \"push_events\": \"true\"}" https://gitlab.com/api/v3/projects/"${repositoryNamespaceReplaced}"/hooks
-
-            //} else
-            // if (obj.repositoryService === 'BitBucket') {
-            //   shell.exec('curl -v -H "Content-Type: application/json" -X POST --data "{\"description\": \"VoCol\", \"url\": \"' + obj.server + '/push\", \"active\": true, \"events\": [  \"repo:push\",  \"issue:created\", \"issue:updated\" ] }" https://' + obj.user + ':' + obj.password + '@api.bitbucket.org/2.0/repositories/' + obj.repositoryName + '/hooks', {
-            //     silent: false
-            //   }).stdout;
-            // }
-
-            //TODO: do we need to run this script again
-            // cd /home/vagrant/VoCol
-            // fuser -k 3001/tcp
-            // node webHookListener.js &
-
-
-          }
+          // //////////////////////////////////////////////////////////////////////
+          // if (webHook === true) {
+          //   //   shell.echo("");
+          //   //   if (obj.repositoryService === 'gitHub') {
+          //   //     shell.exec('curl -u "' + obj.user + ':' + obj.password + '" -i  https://api.github.com/hub -F "hub.mode=subscribe"  -F "hub.topic=' + obj.repositoryName + '/events/push.json"  -F "hub.callback=' + obj.server + '/push"', {
+          //   //       silent: false
+          //   //     }).stdout;
+          //   //   } else if (obj.repositoryService === 'gitLab') {
+          //   //     shell.exec('git push https://' + obj.user + ':' + obj.password + '@gitlab.com/"' + obj.repositoryName + '".git master', {
+          //   //       silent: false
+          //   //     }).stdout;
+          //
+          //   //TODO: for gitLab
+          //   //  #GitLab res=$(curl https://gitlab.com/api/v3/session --data "login=${user}&password=${password}")
+          //   //
+          //   //  #GitLab private_token=""
+          //   //
+          //   //  #GitLab temp=`echo $res | sed 's/\\\\\//\//g' | sed 's/[{}]//g' | awk -v k="private_token" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w private_token`
+          //   //  #GitLab   private_token=${temp##*|}
+          //   //
+          //   //  #GitLab repositoryNamespaceReplaced="${repositoryNamespace/\//%2F}"
+          //   //
+          //   //  #GitLab curl --header "PRIVATE-TOKEN: ${private_token}" -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{ \"id\": \"${repositoryNamespace}\", \"url\": \"${server}/push\", \"push_events\": \"true\"}" https://gitlab.com/api/v3/projects/"${repositoryNamespaceReplaced}"/hooks
+          //
+          //   //} else
+          //   // if (obj.repositoryService === 'BitBucket') {
+          //   //   shell.exec('curl -v -H "Content-Type: application/json" -X POST --data "{\"description\": \"VoCol\", \"url\": \"' + obj.server + '/push\", \"active\": true, \"events\": [  \"repo:push\",  \"issue:created\", \"issue:updated\" ] }" https://' + obj.user + ':' + obj.password + '@api.bitbucket.org/2.0/repositories/' + obj.repositoryName + '/hooks', {
+          //   //     silent: false
+          //   //   }).stdout;
+          //   // }
+          //
+          //   //TODO: do we need to run this script again
+          //   // cd /home/vagrant/VoCol
+          //   // fuser -k 3001/tcp
+          //   // node webHookListener.js &
+          //
+          //
+          // }
           // run external bash script to start up both fuseki-server and VoColApp
           const child = spawn('sh', ['../../scripts/run.sh', '&']);
           // show output live of process on std
