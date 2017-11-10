@@ -35,7 +35,7 @@ router.get('/', function(req, res) {
         var removeHistory = false;
         var repositoryURL = obj.repositoryURL;
         repositoryURL = repositoryURL.trim();
-        if (repositoryURL [repositoryURL.length - 1] === ('/'))
+        if (repositoryURL[repositoryURL.length - 1] === ('/'))
           repositoryURL = repositoryURL.slice(0, -1);
 
         //#echo "${repository:0:8}${user}:${password}@${repository:8}.git"
@@ -72,9 +72,9 @@ router.get('/', function(req, res) {
             shell.rm("-rf", "repoFolder");
             //TODO*:change  the following login
             //shell.exec('git clone "https://' + obj.user + ':' + obj.password + '@' + obj.repositoryURL.slice(8)+'" repoFolder',{silent:false}).stdout;
-             shell.exec('git clone "' + repositoryURL + '" repoFolder', {
-               silent: false
-             }).stdout;
+            shell.exec('git clone "' + repositoryURL + '" repoFolder', {
+              silent: false
+            }).stdout;
             shell.cd("repoFolder");
             removeHistory = true;
           }
@@ -85,8 +85,8 @@ router.get('/', function(req, res) {
           //shell.cd("repoFolder");
 
           shell.exec('git clone "' + repositoryURL + '" repoFolder', {
-             silent: false
-           }).stdout;
+            silent: false
+          }).stdout;
           shell.cd("repoFolder");
           removeHistory = true;
         }
@@ -260,7 +260,6 @@ router.get('/', function(req, res) {
             shell.exec('pwd', {
               silent: false
             }).stdout;
-            console.log('I am herer sdfdsfdsf sfd sdfdsf dsfd sdf dsfsdf dsfd sfd');
             // filePath where we read from
             var filePath = '../../../views/turtleEditor/js/turtle-editor.js';
             // read contents of the file with the filePath
@@ -271,33 +270,37 @@ router.get('/', function(req, res) {
             fs.writeFileSync(filePath, contents);
           }
 
-          if(obj.evolutionReport === "true"){
+          if (obj.evolutionReport === "true") {
             // Evolution Part
             if (fs.existsSync('../evolution/SingleVoc.ttl')) {
               shell.cd('../owl2vcs/').stdout;
               //  shell.mkdir('../evolution');
-              console.log('Insde    hjhhkhlj kjhkh');
               shell.exec('pwd');
-              var evolutionReport = shell.exec('./owl2diff ../evolution/SingleVoc.ttl ../serializations/SingleVoc.ttl', {
-                silent: false
-              }).stdout;
-              // write repoter on evolutionReport.txt file
-              fs.writeFileSync('../evolution/evolutionReport.txt',evolutionReport,'utf8');
-              if (evolutionReport.includes('identical')) {
-
-                var constantString = 'diff SingleVoc.ttl  ../serializations/SingleVoc.ttl';
-                console.log(constantString);
+               var generationDate = 'Date:'+shell.exec('date "+%d-%m-%Y %H-%M-%S"').stdout;
+               var evolutionReport = shell.exec('./owl2diff ../evolution/SingleVoc.ttl ../serializations/SingleVoc.ttl', {
+                 silent: false
+               }).stdout;
+              if (evolutionReport.includes('+')||evolutionReport.includes('-')) {
+                fs.appendFileSync('../evolution/evolutionReport.txt', generationDate.trim()+evolutionReport);
               }
+
               // Do something
             }
-            console.log(evolutionReport);
             shell.exec('pwd', {
               silent: false
             }).stdout;
             shell.mkdir('../evolution').stdout;
             shell.cp('../serializations/SingleVoc.ttl', '../evolution/SingleVoc.ttl').stdout;
-            console.log('dfgfdgjlkdfjg;kl jddfgdfgfdgdfg fgdfgdfgfdg');
             shell.exec('pwd');
+            // var generationDate = shell.exec('date "+%d-%m-%Y %H-%M-%S"').stdout;
+            // var openTag = "<";
+            // var closeTag = ">";
+            // var openTagHtml = "&lt;";
+            // var closeTagHtml = "&gt;";
+            // var reportDiv = "<div> </div>";
+            // var add = "+ ";
+            // var del = "- ";
+
             //
             //evolutionReport = $(. / owl2diff / home / vagrant / VoCol / evolution / SingleVoc.ttl / home / vagrant / repoFolder / SingleVoc.ttl - c 2 > & 1)
             //
@@ -306,7 +309,8 @@ router.get('/', function(req, res) {
             //
             // # Evolution fileContent = `cat /home/vagrant/schemaorg/docs/evolution.html`
             // #Evolution constant_string = "diff SingleVoc.ttl /home/vagrant/repoFolder/SingleVoc.ttl"#
-            // Evolution generationDate = $(date "+%d-%m-%Y %H-%M-%S")# Evolution openTag = "<"#
+            // Evolution generationDate = $(date "+%d-%m-%Y %H-%M-%S")
+            //# Evolution openTag = "<"#
             // Evolution closeTag = ">"#
             // Evolution openTagHtml = "&lt;"#
             // Evolution closeTagHtml = "&gt;"#
@@ -323,7 +327,8 @@ router.get('/', function(req, res) {
             //
             // #Evolution uniqueID = $(cat / proc / sys / kernel / random / uuid)
             // # Evolution result_Content = "${fileContent/$reportDiv/$reportDiv</hr></br><div id=\"$uniqueID\">${1}:$generationDate$evolutionReport</div></br>}"
-            // #Evolution echo "${result_Content}" > /home/vagrant / schemaorg / docs / evolution.html# Evolution rm / home / vagrant / VoCol / evolution / SingleVoc.ttl
+            // #Evolution echo "${result_Content}" > /home/vagrant / schemaorg / docs / evolution.html
+            //# Evolution rm / home / vagrant / VoCol / evolution / SingleVoc.ttl
             // # Evolution cd / home / vagrant / VoCol
             // # Evolution node helper.js $uniqueID "\"${1}\""
             // # Evolution fi# Evolution fi
@@ -359,65 +364,68 @@ router.get('/', function(req, res) {
             //
             //  fi
             //
-        }
+          }
 
           ////////////////////////////////////////////////////////////////////
           // client hooks
           ////////////////////////////////////////////////////////////////////
           //TODO: just disable for testing perpose
-          // if (obj.clientHooks === "true") {
-          //   shell.exec("pwd"); // in repoFolder path
-          //
-          //   shell.cd("../repoFolder"); // in repoFolder path
-          //   //shell.mkdir('-p', 'VoColClient');
-          //   shell.cp('-r', '../VoColApp/helper/tools/VoColClient/Hooks', 'VoColClient/');
-          //   shell.cd('-p', 'VoColClient/Hooks');
-          //   //TODO:
-          //   var serverURL = "${" + obj.server + "//\//\\/}"
-          //   //
-          //   shell.sed('-i', "s/ServerURL/" + serverURL + "/g" + ' pre-commit', {
-          //     silent: false
-          //   }).stdout;
-          //   shell.exec('pwd');
-          //   shell.cd("../../repoFolder"); // in repoFolder path
-          //   shell.exec('git config user.email "' + obj.user + '@vocol.com"', {
-          //     silent: false
-          //   }).stdout;
-          //   shell.exec('git config user.name ' + obj.user, {
-          //     silent: false
-          //   }).stdout;
-          //   shell.exec('git add .', {
-          //     silent: false
-          //   }).stdout;
-          //   shell.exec('git commit -m "configuration of repository"', {
-          //     silent: false
-          //   }).stdout;
-          //   //TODO*:change  the following login
-          //   //shell.exec('git clone "${repository:0:8}${user}:${password}@${repository:8}.git" repoFolder',{silent:false}).stdout;
-          //   if (obj.repositoryService === 'gitHub')
-          //     shell.exec('git push "https://' + obj.user + ':' + obj.password + '@' + obj.repositoryURL.slice(8) + '"  repoFolder', {
-          //       silent: false
-          //     }).stdout;
-          //   else if (obj.repositoryService === 'gitLab')
-          //     shell.exec('git push https://' + obj.user + ':' + obj.password + '@gitlab.com/"' + obj.repositoryName + '".git master', {
-          //       silent: false
-          //     }).stdout;
-          //   else if (obj.repositoryService === 'BitBucket')
-          //     shell.exec('git push https://' + obj.user + ':' + obj.password + '@bitbucket.org/"' + obj.repositoryName + '".git', {
-          //       silent: false
-          //     }).stdout;
-          //   // #GitLab git push https://${user}:${password}@gitlab.com/"${repositoryNamespace}".git master
-          //
-          //   //  git push "${repository:0:8}${user}:${password}@${repository:8}.git"
-          //   //
-          //   //
-          //   // #BitBucket git push https://${user}:${password}@bitbucket.org/"${repositoryNamespace}".git
-          //   //
-          //   shell.cd('../..'); //VoColClient
-          //   //TODO*: do we need to do  the below commands
-          //   // fuser -k 3002/tcp
-          //   // node clientServices.js "Rapper" "consistencyChecking" "constraintChecking" "formatting" &
-          // }
+          if (obj.clientHooks === "true") {
+            shell.exec("pwd"); // in repoFolder path
+            console.log('this is client-side services');
+            //shell.cd("../repoFolder"); // in repoFolder path
+            //shell.mkdir('-p', 'VoColClient');
+            shell.cd('..');
+            shell.rm('-rf', 'VoColClientService');
+            shell.cp('-r', 'VoColClient/Hooks', 'VoColClientService/');
+            shell.cd('-p', 'VoColClientService');
+            shell.exec("pwd");
+            //TODO: change to obj.server
+            var serverURL = "localhost:3002";
+            //
+            shell.exec('sed -i "s/#server/' + serverURL + '/g" pre-commit', {
+              silent: false
+            }).stdout;
+            shell.exec('pwd');
+            shell.cd("../../../../repoFolder"); // in repoFolder path
+            shell.exec('mv ../VoColApp/helper/tools/VoColClientService/* .git/hooks/').stdout;
+            shell.exec('pwd');
+            shell.exec('git add .', {
+              silent: false
+            }).stdout;
+            shell.exec('git commit -m "configuration of repository"', {
+              silent: false
+            }).stdout;
+            //TODO*:change  the following login
+            shell.exec('git push', {
+              silent: false
+            }).stdout;
+            if (obj.repositoryService === 'gitHub')
+              shell.exec('git push', {
+                silent: false
+              }).stdout;
+            else if (obj.repositoryService === 'gitLab')
+              shell.exec('git push https://' + obj.user + ':' + obj.password + '@gitlab.com/"' + obj.repositoryName + '".git master', {
+                silent: false
+              }).stdout;
+            else if (obj.repositoryService === 'BitBucket')
+              shell.exec('git push https://' + obj.user + ':' + obj.password + '@bitbucket.org/"' + obj.repositoryName + '".git', {
+                silent: false
+              }).stdout;
+            shell.cd('../VoColApp/helper/scripts/'); //VoColClient
+            shell.exec('pwd').stdout; //VoColClient
+
+            //TODO*: do we need to do  the below commands
+            shell.exec('fuser -k 3002/tcp', {
+              silent: false
+            }).stdout;
+            // node clientServices.js "Rapper" "consistencyChecking" "constraintChecking" "formatting" &
+            const child2 = spawn('node', ['clientServices.js', 'rapperChecked', 'consistencyChecking', 'constraintChecking', 'formattingChecked', '&']);
+            child2.stdout.pipe(process.stdout);
+            shell.cd('../tools/VoColClientService/'); //VoColClient
+            shell.exec('pwd').stdout; //VoColClient
+
+          }
 
           ////////////////////////////////////////////////////////////////////
           //// clientHooks
@@ -451,7 +459,7 @@ router.get('/', function(req, res) {
           //
           // cd /home/vagrant/VoCol
           // fuser -k 3002/tcp
-          // node clientServices.js "Rapper" "consistencyChecking" "constraintChecking" "formatting" &
+          // node clientServices.js "rapperChecked" "consistencyChecking" "constraintChecking" "formatting" &
           //
           // fi
           //
@@ -504,8 +512,7 @@ router.get('/', function(req, res) {
           shell.cd('../../../.').stdout;
           // redirect to the start page
           res.redirect('/');
-        }
-        else // if it has syntaxErrors
+        } else // if it has syntaxErrors
         {
           shell.exec('pwd');
           shell.cd('../VoColApp/').stdout;
@@ -616,8 +623,7 @@ router.get('/', function(req, res) {
 
 
       });
-    }
-    else {
+    } else {
       res.redirect('/config');
     }
   });

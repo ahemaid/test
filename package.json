@@ -10,6 +10,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
     "ejs": "^2.5.7",
+    "escape-html": "^1.0.3",
     "express": "~4.14.1",
     "jsonfile": "^4.0.0",
     "morgan": "~1.7.0",
