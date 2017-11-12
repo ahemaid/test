@@ -381,7 +381,7 @@ router.get('/', function(req, res) {
             shell.cd('-p', 'VoColClientService');
             shell.exec("pwd");
             //TODO: change to obj.server
-            var serverURL = "localhost:3002";
+            var serverURL = "http://localhost:3002/client";
             //
             shell.exec('sed -i "s/#server/' + serverURL + '/g" pre-commit', {
               silent: false
