@@ -29,7 +29,6 @@
       });
       var commitData = <%- JSON.stringify(evolutionReport) %>;
 
-
       var versionsJSONArray = _.uniqBy(commitData, v => [v.version, v.date].join());
 
       console.log(versionsJSONArray);
