@@ -134,34 +134,34 @@
     },
     "instances" : 54,
     "individuals" : [ {
-      "iri" : "http://linkedgeodata.org/triplify/node732716518",
+      "iri" : "http://linkedgeodata.org/triplify/node732716479",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node732716518"
+        "IRI-based" : "http://linkedgeodata.org/triplify/node732716479"
       },
       "annotations" : {
         "label" : [ {
           "identifier" : "label",
           "language" : "undefined",
-          "value" : "Autohaus Günther Mühl",
+          "value" : "Firma Dieter Schulz",
           "type" : "label"
         } ],
         "long" : [ {
           "identifier" : "long",
           "language" : "undefined",
-          "value" : "12.374",
+          "value" : "12.4367",
           "type" : "label"
         } ],
         "lat" : [ {
           "identifier" : "lat",
           "language" : "undefined",
-          "value" : "51.3038",
+          "value" : "51.3652",
           "type" : "label"
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/way237681280",
+      "iri" : "http://linkedgeodata.org/triplify/way237649227",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way237681280"
+        "IRI-based" : "http://linkedgeodata.org/triplify/way237649227"
       },
       "annotations" : {
         "label" : [ {
@@ -172,111 +172,9 @@
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/way32964549",
+      "iri" : "http://linkedgeodata.org/triplify/way32756103",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way32964549"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Globus",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/node2850750837",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node2850750837"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Tankstelle",
-          "type" : "label"
-        } ],
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "12.3777",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "51.3762",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way33627293",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way33627293"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Go",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way142277010",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way142277010"
-      },
-      "annotations" : { }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/node238080786",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node238080786"
-      },
-      "annotations" : {
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "12.4616",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "51.3455",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way250925841",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way250925841"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Total Autohof A14",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way66240632",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way66240632"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "CleanCar",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way76246393",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way76246393"
+        "IRI-based" : "http://linkedgeodata.org/triplify/way32756103"
       },
       "annotations" : {
         "label" : [ {
@@ -287,54 +185,28 @@
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/way238448838",
+      "iri" : "http://linkedgeodata.org/triplify/node279358486",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way238448838"
+        "IRI-based" : "http://linkedgeodata.org/triplify/node279358486"
       },
       "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Star",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/node269064972",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node269064972"
-      },
-      "annotations" : {
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "51.2727",
-          "type" : "label"
-        } ],
         "long" : [ {
           "identifier" : "long",
           "language" : "undefined",
-          "value" : "12.3082",
+          "value" : "12.3271",
           "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way239966956",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way239966956"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
           "language" : "undefined",
-          "value" : "Esso",
+          "value" : "51.3078",
           "type" : "label"
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/way38424460",
+      "iri" : "http://linkedgeodata.org/triplify/way33504189",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way38424460"
+        "IRI-based" : "http://linkedgeodata.org/triplify/way33504189"
       },
       "annotations" : {
         "label" : [ {
@@ -344,6 +216,12 @@
           "type" : "label"
         } ]
       }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way111326952",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way111326952"
+      },
+      "annotations" : { }
     }, {
       "iri" : "http://linkedgeodata.org/triplify/node203098644",
       "labels" : {
@@ -370,9 +248,48 @@
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/way241095295",
+      "iri" : "http://linkedgeodata.org/triplify/way241095299",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way241095295"
+        "IRI-based" : "http://linkedgeodata.org/triplify/way241095299"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "STAR",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way38424460",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way38424460"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "HEM",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way66240634",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way66240634"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Sprint",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way237681280",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way237681280"
       },
       "annotations" : {
         "label" : [ {
@@ -383,27 +300,27 @@
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/node2850776898",
+      "iri" : "http://linkedgeodata.org/triplify/node2626943480",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node2850776898"
+        "IRI-based" : "http://linkedgeodata.org/triplify/node2626943480"
       },
       "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Tankstelle",
-          "type" : "label"
-        } ],
         "long" : [ {
           "identifier" : "long",
           "language" : "undefined",
-          "value" : "12.3661",
+          "value" : "12.3953",
+          "type" : "label"
+        } ],
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Total",
           "type" : "label"
         } ],
         "lat" : [ {
           "identifier" : "lat",
           "language" : "undefined",
-          "value" : "51.366",
+          "value" : "51.3431",
           "type" : "label"
         } ]
       }
@@ -421,53 +338,15 @@
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/way241095299",
+      "iri" : "http://linkedgeodata.org/triplify/way37235833",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way241095299"
+        "IRI-based" : "http://linkedgeodata.org/triplify/way37235833"
       },
       "annotations" : {
         "label" : [ {
           "identifier" : "label",
           "language" : "undefined",
-          "value" : "STAR",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/node59960302",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node59960302"
-      },
-      "annotations" : {
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "12.3102",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "51.3172",
-          "type" : "label"
-        } ],
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "BFT",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way239285008",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way239285008"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Aral",
+          "value" : "Tankstelle Marktkauf",
           "type" : "label"
         } ]
       }
@@ -515,40 +394,104 @@
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/node2774668368",
+      "iri" : "http://linkedgeodata.org/triplify/way239966956",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node2774668368"
+        "IRI-based" : "http://linkedgeodata.org/triplify/way239966956"
       },
       "annotations" : {
-        "lat" : [ {
-          "identifier" : "lat",
+        "label" : [ {
+          "identifier" : "label",
           "language" : "undefined",
-          "value" : "51.3106",
+          "value" : "Esso",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node2850750837",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node2850750837"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Tankstelle",
           "type" : "label"
         } ],
         "long" : [ {
           "identifier" : "long",
           "language" : "undefined",
-          "value" : "12.309",
+          "value" : "12.3777",
           "type" : "label"
         } ],
-        "label" : [ {
-          "identifier" : "label",
+        "lat" : [ {
+          "identifier" : "lat",
           "language" : "undefined",
-          "value" : "Star",
+          "value" : "51.3762",
           "type" : "label"
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/way265421491",
+      "iri" : "http://linkedgeodata.org/triplify/way239285011",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way265421491"
+        "IRI-based" : "http://linkedgeodata.org/triplify/way239285011"
       },
       "annotations" : {
         "label" : [ {
           "identifier" : "label",
           "language" : "undefined",
-          "value" : "JET",
+          "value" : "Minol",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way241095295",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way241095295"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Aral",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node472272096",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node472272096"
+      },
+      "annotations" : {
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "12.4434",
+          "type" : "label"
+        } ],
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "BMW-Werktankstelle",
+          "type" : "label"
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "51.401",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way238448838",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way238448838"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Star",
           "type" : "label"
         } ]
       }
@@ -596,21 +539,34 @@
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/node382035509",
+      "iri" : "http://linkedgeodata.org/triplify/node269064972",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node382035509"
+        "IRI-based" : "http://linkedgeodata.org/triplify/node269064972"
       },
       "annotations" : {
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "12.4643",
-          "type" : "label"
-        } ],
         "lat" : [ {
           "identifier" : "lat",
           "language" : "undefined",
-          "value" : "51.3641",
+          "value" : "51.2727",
+          "type" : "label"
+        } ],
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "12.3082",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way264317062",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way264317062"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Q1",
           "type" : "label"
         } ]
       }
@@ -658,300 +614,27 @@
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/way237392591",
+      "iri" : "http://linkedgeodata.org/triplify/node303755216",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way237392591"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Bavaria Petrol",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way237649227",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way237649227"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Aral",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way32756103",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way32756103"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Aral",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way31075269",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way31075269"
-      },
-      "annotations" : { }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way239285011",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way239285011"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Minol",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way33188875",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way33188875"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Aral",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way33504189",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way33504189"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "HEM",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way107959624",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way107959624"
-      },
-      "annotations" : { }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/node82689845",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node82689845"
-      },
-      "annotations" : {
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "12.4564",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "51.3653",
-          "type" : "label"
-        } ],
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Shell",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way92105974",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way92105974"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Agip Podelwitz",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/node82689506",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node82689506"
-      },
-      "annotations" : {
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "12.4577",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "51.3669",
-          "type" : "label"
-        } ],
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Kaufland",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way111326952",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way111326952"
-      },
-      "annotations" : { }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/node279358486",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node279358486"
-      },
-      "annotations" : {
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "12.3271",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "51.3078",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way85207845",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way85207845"
-      },
-      "annotations" : { }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/node732716479",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node732716479"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Firma Dieter Schulz",
-          "type" : "label"
-        } ],
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "12.4367",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "51.3652",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way32754334",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way32754334"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Aral",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way66240634",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way66240634"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Sprint",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/node2774941417",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node2774941417"
+        "IRI-based" : "http://linkedgeodata.org/triplify/node303755216"
       },
       "annotations" : {
         "lat" : [ {
           "identifier" : "lat",
           "language" : "undefined",
-          "value" : "51.3105",
+          "value" : "51.4082",
+          "type" : "label"
+        } ],
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "tankpool24",
           "type" : "label"
         } ],
         "long" : [ {
           "identifier" : "long",
           "language" : "undefined",
-          "value" : "12.3267",
-          "type" : "label"
-        } ],
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "JET",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/node26023847",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node26023847"
-      },
-      "annotations" : {
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "51.3744",
-          "type" : "label"
-        } ],
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "12.4116",
-          "type" : "label"
-        } ],
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Gulf",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way102157726",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way102157726"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Total",
+          "value" : "12.303",
           "type" : "label"
         } ]
       }
@@ -999,40 +682,34 @@
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/way264317062",
+      "iri" : "http://linkedgeodata.org/triplify/way142277010",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way264317062"
+        "IRI-based" : "http://linkedgeodata.org/triplify/way142277010"
+      },
+      "annotations" : { }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way237392591",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way237392591"
       },
       "annotations" : {
         "label" : [ {
           "identifier" : "label",
           "language" : "undefined",
-          "value" : "Q1",
+          "value" : "Bavaria Petrol",
           "type" : "label"
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/node472272096",
+      "iri" : "http://linkedgeodata.org/triplify/way32754334",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node472272096"
+        "IRI-based" : "http://linkedgeodata.org/triplify/way32754334"
       },
       "annotations" : {
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "12.4434",
-          "type" : "label"
-        } ],
         "label" : [ {
           "identifier" : "label",
           "language" : "undefined",
-          "value" : "BMW-Werktankstelle",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "51.401",
+          "value" : "Aral",
           "type" : "label"
         } ]
       }
@@ -1050,65 +727,388 @@
         } ]
       }
     }, {
-      "iri" : "http://linkedgeodata.org/triplify/node2626943480",
+      "iri" : "http://linkedgeodata.org/triplify/way239285008",
       "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node2626943480"
+        "IRI-based" : "http://linkedgeodata.org/triplify/way239285008"
       },
       "annotations" : {
-        "long" : [ {
-          "identifier" : "long",
+        "label" : [ {
+          "identifier" : "label",
           "language" : "undefined",
-          "value" : "12.3953",
+          "value" : "Aral",
           "type" : "label"
-        } ],
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way32964549",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way32964549"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Globus",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way33188875",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way33188875"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Aral",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way102157726",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way102157726"
+      },
+      "annotations" : {
         "label" : [ {
           "identifier" : "label",
           "language" : "undefined",
           "value" : "Total",
           "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node82689506",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node82689506"
+      },
+      "annotations" : {
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "12.4577",
+          "type" : "label"
         } ],
         "lat" : [ {
           "identifier" : "lat",
           "language" : "undefined",
-          "value" : "51.3431",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/way37235833",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/way37235833"
-      },
-      "annotations" : {
-        "label" : [ {
-          "identifier" : "label",
-          "language" : "undefined",
-          "value" : "Tankstelle Marktkauf",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://linkedgeodata.org/triplify/node303755216",
-      "labels" : {
-        "IRI-based" : "http://linkedgeodata.org/triplify/node303755216"
-      },
-      "annotations" : {
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "51.4082",
+          "value" : "51.3669",
           "type" : "label"
         } ],
         "label" : [ {
           "identifier" : "label",
           "language" : "undefined",
-          "value" : "tankpool24",
+          "value" : "Kaufland",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way85207845",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way85207845"
+      },
+      "annotations" : { }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node732716518",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node732716518"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Autohaus Günther Mühl",
           "type" : "label"
         } ],
         "long" : [ {
           "identifier" : "long",
           "language" : "undefined",
-          "value" : "12.303",
+          "value" : "12.374",
+          "type" : "label"
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "51.3038",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way107959624",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way107959624"
+      },
+      "annotations" : { }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node2774941417",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node2774941417"
+      },
+      "annotations" : {
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "51.3105",
+          "type" : "label"
+        } ],
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "12.3267",
+          "type" : "label"
+        } ],
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "JET",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way76246393",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way76246393"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Aral",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node59960302",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node59960302"
+      },
+      "annotations" : {
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "12.3102",
+          "type" : "label"
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "51.3172",
+          "type" : "label"
+        } ],
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "BFT",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way31075269",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way31075269"
+      },
+      "annotations" : { }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way66240632",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way66240632"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "CleanCar",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node2774668368",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node2774668368"
+      },
+      "annotations" : {
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "51.3106",
+          "type" : "label"
+        } ],
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "12.309",
+          "type" : "label"
+        } ],
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Star",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node238080786",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node238080786"
+      },
+      "annotations" : {
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "12.4616",
+          "type" : "label"
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "51.3455",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node82689845",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node82689845"
+      },
+      "annotations" : {
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "12.4564",
+          "type" : "label"
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "51.3653",
+          "type" : "label"
+        } ],
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Shell",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way250925841",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way250925841"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Total Autohof A14",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node382035509",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node382035509"
+      },
+      "annotations" : {
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "12.4643",
+          "type" : "label"
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "51.3641",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way92105974",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way92105974"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Agip Podelwitz",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way265421491",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way265421491"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "JET",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node26023847",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node26023847"
+      },
+      "annotations" : {
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "51.3744",
+          "type" : "label"
+        } ],
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "12.4116",
+          "type" : "label"
+        } ],
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Gulf",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/way33627293",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/way33627293"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Go",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://linkedgeodata.org/triplify/node2850776898",
+      "labels" : {
+        "IRI-based" : "http://linkedgeodata.org/triplify/node2850776898"
+      },
+      "annotations" : {
+        "label" : [ {
+          "identifier" : "label",
+          "language" : "undefined",
+          "value" : "Tankstelle",
+          "type" : "label"
+        } ],
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "12.3661",
+          "type" : "label"
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "51.366",
           "type" : "label"
         } ]
       }
@@ -1308,70 +1308,27 @@
     "superClasses" : [ "class4" ],
     "instances" : 15,
     "individuals" : [ {
-      "iri" : "http://eccenca.com/mobivoc/ChargingStationG",
+      "iri" : "http://eccenca.com/mobivoc/ChargingStationF",
       "labels" : {
-        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationG"
+        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationF"
       },
       "annotations" : {
-        "operator" : [ {
-          "identifier" : "operator",
+        "hasAddress" : [ {
+          "identifier" : "hasAddress",
           "language" : "undefined",
-          "value" : "Rheinenergie",
-          "type" : "label"
-        } ],
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "7.004420",
-          "type" : "label"
-        } ],
-        "hasIdentifications" : [ {
-          "identifier" : "hasIdentifications",
-          "language" : "undefined",
-          "value" : "Unknown",
+          "value" : "_:genid-nodeid-_:10",
           "type" : "label"
         } ],
         "lat" : [ {
           "identifier" : "lat",
           "language" : "undefined",
-          "value" : "50.757470",
+          "value" : "50.721710",
           "type" : "label"
         } ],
-        "hasAddress" : [ {
-          "identifier" : "hasAddress",
-          "language" : "undefined",
-          "value" : "_:genid-nodeid-_:11",
-          "type" : "label"
-        } ],
-        "website" : [ {
-          "identifier" : "website",
-          "language" : "undefined",
-          "value" : "http://www.rheinenergie.com/TankEn",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://eccenca.com/mobivoc/ChargingStationL",
-      "labels" : {
-        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationL"
-      },
-      "annotations" : {
         "hasIdentifications" : [ {
           "identifier" : "hasIdentifications",
           "language" : "undefined",
           "value" : "Text message, Phone call, Other, Mobile Application",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "50.793180",
-          "type" : "label"
-        } ],
-        "hasAddress" : [ {
-          "identifier" : "hasAddress",
-          "language" : "undefined",
-          "value" : "_:genid-nodeid-_:15",
           "type" : "label"
         } ],
         "operator" : [ {
@@ -1383,51 +1340,14 @@
         "long" : [ {
           "identifier" : "long",
           "language" : "undefined",
-          "value" : "7.203024",
+          "value" : "7.026320",
           "type" : "label"
         } ]
       }
     }, {
-      "iri" : "http://eccenca.com/mobivoc/ChargingStationA",
+      "iri" : "http://eccenca.com/mobivoc/ChargingStationK",
       "labels" : {
-        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationA"
-      },
-      "annotations" : {
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "50.738999",
-          "type" : "label"
-        } ],
-        "hasIdentifications" : [ {
-          "identifier" : "hasIdentifications",
-          "language" : "undefined",
-          "value" : "None",
-          "type" : "label"
-        } ],
-        "hasParking" : [ {
-          "identifier" : "hasParking",
-          "language" : "undefined",
-          "value" : "2 parking spaces for electric vehicles only",
-          "type" : "label"
-        } ],
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "7.103397",
-          "type" : "label"
-        } ],
-        "hasAddress" : [ {
-          "identifier" : "hasAddress",
-          "language" : "undefined",
-          "value" : "_:genid-nodeid-_:5",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://eccenca.com/mobivoc/ChargingStationO",
-      "labels" : {
-        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationO"
+        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationK"
       },
       "annotations" : {
         "hasIdentifications" : [ {
@@ -1436,16 +1356,16 @@
           "value" : "Text message, Phone call, Other, Mobile Application",
           "type" : "label"
         } ],
+        "hasAddress" : [ {
+          "identifier" : "hasAddress",
+          "language" : "undefined",
+          "value" : "_:genid-nodeid-_:14",
+          "type" : "label"
+        } ],
         "lat" : [ {
           "identifier" : "lat",
           "language" : "undefined",
-          "value" : "50.797767",
-          "type" : "label"
-        } ],
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "7.205371",
+          "value" : "50.802184",
           "type" : "label"
         } ],
         "operator" : [ {
@@ -1454,53 +1374,10 @@
           "value" : "RWE",
           "type" : "label"
         } ],
-        "hasAddress" : [ {
-          "identifier" : "hasAddress",
-          "language" : "undefined",
-          "value" : "_:genid-nodeid-_:19",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://eccenca.com/mobivoc/ChargingStationC",
-      "labels" : {
-        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationC"
-      },
-      "annotations" : {
-        "website" : [ {
-          "identifier" : "website",
-          "language" : "undefined",
-          "value" : "http://www.obi.de/de/maerkte/Bonn-Nord/index.html",
-          "type" : "label"
-        } ],
-        "hasIdentifications" : [ {
-          "identifier" : "hasIdentifications",
-          "language" : "undefined",
-          "value" : "None",
-          "type" : "label"
-        } ],
-        "hasParking" : [ {
-          "identifier" : "hasParking",
-          "language" : "undefined",
-          "value" : "1 parking space for electric vehicles only",
-          "type" : "label"
-        } ],
         "long" : [ {
           "identifier" : "long",
           "language" : "undefined",
-          "value" : "7.080653",
-          "type" : "label"
-        } ],
-        "hasAddress" : [ {
-          "identifier" : "hasAddress",
-          "language" : "undefined",
-          "value" : "_:genid-nodeid-_:7",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "50.738228",
+          "value" : "7.218302",
           "type" : "label"
         } ]
       }
@@ -1579,27 +1456,21 @@
         } ]
       }
     }, {
-      "iri" : "http://eccenca.com/mobivoc/ChargingStationF",
+      "iri" : "http://eccenca.com/mobivoc/ChargingStationM",
       "labels" : {
-        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationF"
+        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationM"
       },
       "annotations" : {
-        "hasAddress" : [ {
-          "identifier" : "hasAddress",
+        "hasIdentifications" : [ {
+          "identifier" : "hasIdentifications",
           "language" : "undefined",
-          "value" : "_:genid-nodeid-_:10",
+          "value" : "Text message, Phone call, Other, Mobile Application",
           "type" : "label"
         } ],
         "lat" : [ {
           "identifier" : "lat",
           "language" : "undefined",
-          "value" : "50.721710",
-          "type" : "label"
-        } ],
-        "hasIdentifications" : [ {
-          "identifier" : "hasIdentifications",
-          "language" : "undefined",
-          "value" : "Text message, Phone call, Other, Mobile Application",
+          "value" : "50.793205",
           "type" : "label"
         } ],
         "operator" : [ {
@@ -1608,10 +1479,16 @@
           "value" : "RWE",
           "type" : "label"
         } ],
+        "hasAddress" : [ {
+          "identifier" : "hasAddress",
+          "language" : "undefined",
+          "value" : "_:genid-nodeid-_:16",
+          "type" : "label"
+        } ],
         "long" : [ {
           "identifier" : "long",
           "language" : "undefined",
-          "value" : "7.026320",
+          "value" : "7.205730",
           "type" : "label"
         } ]
       }
@@ -1653,6 +1530,43 @@
         } ]
       }
     }, {
+      "iri" : "http://eccenca.com/mobivoc/ChargingStationA",
+      "labels" : {
+        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationA"
+      },
+      "annotations" : {
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "50.738999",
+          "type" : "label"
+        } ],
+        "hasIdentifications" : [ {
+          "identifier" : "hasIdentifications",
+          "language" : "undefined",
+          "value" : "None",
+          "type" : "label"
+        } ],
+        "hasParking" : [ {
+          "identifier" : "hasParking",
+          "language" : "undefined",
+          "value" : "2 parking spaces for electric vehicles only",
+          "type" : "label"
+        } ],
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "7.103397",
+          "type" : "label"
+        } ],
+        "hasAddress" : [ {
+          "identifier" : "hasAddress",
+          "language" : "undefined",
+          "value" : "_:genid-nodeid-_:5",
+          "type" : "label"
+        } ]
+      }
+    }, {
       "iri" : "http://eccenca.com/mobivoc/ChargingStationE",
       "labels" : {
         "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationE"
@@ -1684,46 +1598,9 @@
         } ]
       }
     }, {
-      "iri" : "http://eccenca.com/mobivoc/ChargingStationI",
+      "iri" : "http://eccenca.com/mobivoc/ChargingStationO",
       "labels" : {
-        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationI"
-      },
-      "annotations" : {
-        "hasIdentifications" : [ {
-          "identifier" : "hasIdentifications",
-          "language" : "undefined",
-          "value" : "Text message, Phone call, Other, Mobile Application",
-          "type" : "label"
-        } ],
-        "hasAddress" : [ {
-          "identifier" : "hasAddress",
-          "language" : "undefined",
-          "value" : "_:genid-nodeid-_:13",
-          "type" : "label"
-        } ],
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "7.075870",
-          "type" : "label"
-        } ],
-        "operator" : [ {
-          "identifier" : "operator",
-          "language" : "undefined",
-          "value" : "RWE",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "50.683040",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://eccenca.com/mobivoc/ChargingStationM",
-      "labels" : {
-        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationM"
+        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationO"
       },
       "annotations" : {
         "hasIdentifications" : [ {
@@ -1735,7 +1612,13 @@
         "lat" : [ {
           "identifier" : "lat",
           "language" : "undefined",
-          "value" : "50.793205",
+          "value" : "50.797767",
+          "type" : "label"
+        } ],
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "7.205371",
           "type" : "label"
         } ],
         "operator" : [ {
@@ -1747,50 +1630,7 @@
         "hasAddress" : [ {
           "identifier" : "hasAddress",
           "language" : "undefined",
-          "value" : "_:genid-nodeid-_:16",
-          "type" : "label"
-        } ],
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "7.205730",
-          "type" : "label"
-        } ]
-      }
-    }, {
-      "iri" : "http://eccenca.com/mobivoc/ChargingStationK",
-      "labels" : {
-        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationK"
-      },
-      "annotations" : {
-        "hasIdentifications" : [ {
-          "identifier" : "hasIdentifications",
-          "language" : "undefined",
-          "value" : "Text message, Phone call, Other, Mobile Application",
-          "type" : "label"
-        } ],
-        "hasAddress" : [ {
-          "identifier" : "hasAddress",
-          "language" : "undefined",
-          "value" : "_:genid-nodeid-_:14",
-          "type" : "label"
-        } ],
-        "lat" : [ {
-          "identifier" : "lat",
-          "language" : "undefined",
-          "value" : "50.802184",
-          "type" : "label"
-        } ],
-        "operator" : [ {
-          "identifier" : "operator",
-          "language" : "undefined",
-          "value" : "RWE",
-          "type" : "label"
-        } ],
-        "long" : [ {
-          "identifier" : "long",
-          "language" : "undefined",
-          "value" : "7.218302",
+          "value" : "_:genid-nodeid-_:19",
           "type" : "label"
         } ]
       }
@@ -1871,6 +1711,166 @@
           "identifier" : "owner",
           "language" : "undefined",
           "value" : "TankE RheinEnergie",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://eccenca.com/mobivoc/ChargingStationL",
+      "labels" : {
+        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationL"
+      },
+      "annotations" : {
+        "hasIdentifications" : [ {
+          "identifier" : "hasIdentifications",
+          "language" : "undefined",
+          "value" : "Text message, Phone call, Other, Mobile Application",
+          "type" : "label"
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "50.793180",
+          "type" : "label"
+        } ],
+        "hasAddress" : [ {
+          "identifier" : "hasAddress",
+          "language" : "undefined",
+          "value" : "_:genid-nodeid-_:15",
+          "type" : "label"
+        } ],
+        "operator" : [ {
+          "identifier" : "operator",
+          "language" : "undefined",
+          "value" : "RWE",
+          "type" : "label"
+        } ],
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "7.203024",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://eccenca.com/mobivoc/ChargingStationI",
+      "labels" : {
+        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationI"
+      },
+      "annotations" : {
+        "hasIdentifications" : [ {
+          "identifier" : "hasIdentifications",
+          "language" : "undefined",
+          "value" : "Text message, Phone call, Other, Mobile Application",
+          "type" : "label"
+        } ],
+        "hasAddress" : [ {
+          "identifier" : "hasAddress",
+          "language" : "undefined",
+          "value" : "_:genid-nodeid-_:13",
+          "type" : "label"
+        } ],
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "7.075870",
+          "type" : "label"
+        } ],
+        "operator" : [ {
+          "identifier" : "operator",
+          "language" : "undefined",
+          "value" : "RWE",
+          "type" : "label"
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "50.683040",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://eccenca.com/mobivoc/ChargingStationC",
+      "labels" : {
+        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationC"
+      },
+      "annotations" : {
+        "website" : [ {
+          "identifier" : "website",
+          "language" : "undefined",
+          "value" : "http://www.obi.de/de/maerkte/Bonn-Nord/index.html",
+          "type" : "label"
+        } ],
+        "hasIdentifications" : [ {
+          "identifier" : "hasIdentifications",
+          "language" : "undefined",
+          "value" : "None",
+          "type" : "label"
+        } ],
+        "hasParking" : [ {
+          "identifier" : "hasParking",
+          "language" : "undefined",
+          "value" : "1 parking space for electric vehicles only",
+          "type" : "label"
+        } ],
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "7.080653",
+          "type" : "label"
+        } ],
+        "hasAddress" : [ {
+          "identifier" : "hasAddress",
+          "language" : "undefined",
+          "value" : "_:genid-nodeid-_:7",
+          "type" : "label"
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "50.738228",
+          "type" : "label"
+        } ]
+      }
+    }, {
+      "iri" : "http://eccenca.com/mobivoc/ChargingStationG",
+      "labels" : {
+        "IRI-based" : "http://eccenca.com/mobivoc/ChargingStationG"
+      },
+      "annotations" : {
+        "operator" : [ {
+          "identifier" : "operator",
+          "language" : "undefined",
+          "value" : "Rheinenergie",
+          "type" : "label"
+        } ],
+        "long" : [ {
+          "identifier" : "long",
+          "language" : "undefined",
+          "value" : "7.004420",
+          "type" : "label"
+        } ],
+        "hasIdentifications" : [ {
+          "identifier" : "hasIdentifications",
+          "language" : "undefined",
+          "value" : "Unknown",
+          "type" : "label"
+        } ],
+        "lat" : [ {
+          "identifier" : "lat",
+          "language" : "undefined",
+          "value" : "50.757470",
+          "type" : "label"
+        } ],
+        "hasAddress" : [ {
+          "identifier" : "hasAddress",
+          "language" : "undefined",
+          "value" : "_:genid-nodeid-_:11",
+          "type" : "label"
+        } ],
+        "website" : [ {
+          "identifier" : "website",
+          "language" : "undefined",
+          "value" : "http://www.rheinenergie.com/TankEn",
           "type" : "label"
         } ]
       }
