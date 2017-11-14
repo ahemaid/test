@@ -12,34 +12,43 @@
     <script type="text/javascript">
       // DOM element where the Timeline will be attached
       var container = document.getElementById('visualization');
-
       // Create a DataSet (allows two way data-binding)
       var items = new vis.DataSet(<%- JSON.stringify(history) %>);
-      console.log(items);
       // Configuration for the Timeline
       var options = {
         'width': '100%',
         'height': '300px'
       };
 
+
       // Create a Timeline
       var timeline = new vis.Timeline(container, items, options);
       timeline.on('select', function(properties) {
         $(location).attr('href', items._data[properties.items[0]].link)
       });
+
+
       var commitData = <%- JSON.stringify(evolutionReport) %>;
 
+      console.log(commitData);
       var versionsJSONArray = _.uniqBy(commitData, v => [v.version, v.date].join());
 
       console.log(versionsJSONArray);
       versionsJSONArray.forEach(function(item) {
-        $("#commitDetails").append("<br /><div id=" + item.version + "><h2>" + item.version +'-'+ item.date+ "</h2></div>");
+        $("#commitDetails").append("<br /><div  id=" + item.version + "><h2>" + item.version + '-' + item.date + "</h2>");
         commitData.forEach(function(element) {
           if (element.version === item.version) {
             if (element.event === 'add')
-              $("#commitDetails").append("<h6> + " + element.value + "</h6>");
-            else if (element.event === 'del')
-              $("#commitDetails").append("<h6> - " + element.value + "</h6>");
+              $("#commitDetails").append("<h6><p class='bg-success text-success' style='margin-right:390px;'> + " + element.value + "</p></h6>");
+            // else if (element.event === 'del')
+            //   $("#commitDetails").append("<h6><p class='bg-danger text-danger' style='margin-right:390px;'>  - " + element.value + "</p></h6>");
+
+          }
+        })
+        commitData.forEach(function(element) {
+          if (element.version === item.version) {
+            if (element.event === 'del')
+              $("#commitDetails").append("<h6><p class='bg-danger text-danger' style='margin-right:390px;'>  - " + element.value + "</p></h6>");
 
           }
         })

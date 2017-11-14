@@ -10,17 +10,17 @@ var users = require('./routes/users');
 var documentation = require('./routes/documentation');
 var visualization = require('./routes/visualization');
 var turtleEditorLink = require('./routes/turtleEditor');
+var analyticsLink = require('./routes/analytics');
 var evolution = require('./routes/evolution');
 var startup = require('./routes/startup');
 var validation = require('./routes/validation');
+var client =  require('./routes/clientServices');
+var listener =  require('./routes/listener');
 var fs = require('fs');
-var  jsonfile  =  require('jsonfile');
+var jsonfile  =  require('jsonfile');
 var app = express();
 var watch = require('node-watch');
-
-
-
-
+var shell = require('shelljs');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,10 +42,14 @@ app.use('/documentation', documentation);
 app.use('/visualization', visualization);
 app.use('/webvowlLink', express.static("views/webvowl"));
 app.use('/turtleEditorLink', express.static("views/turtleEditor"));
+app.use('/analyticsLink', express.static("views/d3sparql"));
+app.use('/analytics', analyticsLink);
 app.use('/turtleEditor', turtleEditorLink);
 app.use('/evolution', evolution);
 app.use('/startup', startup);
 app.use('/validation', validation);
+app.use('/client', client);
+app.use('/listener', listener);
 
 
 
@@ -113,7 +117,6 @@ readSyntaxErrorsFile();
 // check if the userConfigurations file is exist
 // for the first time of app running
 var path = __dirname + '/jsonDataFiles/userConfigurations.json';
-
 function readUserConfigurationFile() {
   fs.exists(path, function(exists) {
     if (exists) {
@@ -121,6 +124,8 @@ function readUserConfigurationFile() {
       if (data.includes('vocabularyName')) {
         jsonfile.readFile(path, function(err, obj)  {
           var menu = Array(7).fill(false);
+
+
           Object.keys(obj).forEach(function(k) {
             if (k === "vocabularyName") {
               // store projectTitle to be used by header.ejs
@@ -136,7 +141,7 @@ function readUserConfigurationFile() {
               menu[3] = true;
             } else if (k === "evolutionReport") { //menu[4]
               menu[4] = true;
-            } else if (k === "predefinedQueries") { //menu[5]
+            } else if (k === "analytics") { //menu[5]
               menu[5] = true;
             } else if (k === "syntaxValidation") { //menu[6]
               menu[6] = true;

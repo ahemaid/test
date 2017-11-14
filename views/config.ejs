@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
   <link rel="stylesheet" href="/stylesheets/style.css">
-  <link rel="stylesheet" href="/minified/themes/default.min.css" />
   <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="/semantic/dist/semantic.min.js"></script>
@@ -153,42 +152,27 @@ Repository service         </a>
                   </div>
                 </div>
               </div>
+              <div class="inline fields" style="margin-bottom:5px;paddin">
+                <div class="ui labeled input">
+                  <a class="ui label" style="width: 150px;margin-right: 20px;">
+Repository Type         </a>
+                </div>
+
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <input type="radio" name="repositoryType" value="public" checked>
+                    <label>public</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <input type="radio" name="repositoryType" value="private">
+                    <label>private</label>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class=" title">
-              <i class="dropdown icon"></i> Syntax Validation
-            </div>
-            <div class=" content">
-              <div class="field">
-                <div class="ui radio checkbox">
-                  <input type="radio" name="syntaxValidation" value="Rapper" checked>
-                  <label>Rapper</label>
-                </div>
-              </div>
-              <div class="field">
-                <div class="ui radio checkbox">
-                  <input type="radio" name="syntaxValidation" value="Jena Riot">
-                  <label>Jena Riot</label>
-                </div>
-              </div>
-            </div>
-            <div id="docGenerationTitle" class="title">
-              <i class="dropdown icon"></i> Documentation Generation
-            </div>
-            <div id="docGenerationContent" class="content">
-              <div class="field">
-                <div class="ui radio checkbox">
-                  <input type="radio" name="documentationGeneration" value="SchemaOrg" checked>
-                  <label>SchemaOrg</label>
-                </div>
-              </div>
-              <div class="field">
-                <div class="ui radio checkbox">
-                  <input type="radio" name="documentationGeneration" value="Widoco">
-                  <label>Widoco</label>
-                </div>
-              </div>
-            </div>
             <div id="additionalServicesTitle" class="title">
               <i class="dropdown icon"></i> Additional Services
             </div>
@@ -207,8 +191,8 @@ Repository service         </a>
               </div>
               <div class="field">
                 <div class="ui checkbox">
-                  <input type="checkbox" name="syntaxValidationReport" value="true" checked>
-                  <label>Syntax Validation Report</label>
+                  <input type="checkbox" name="documentationGeneration" value="true" checked>
+                  <label>Documentation Generation</label>
                 </div>
               </div>
               <div class="field">
@@ -217,12 +201,7 @@ Repository service         </a>
                   <label>Schema Evolution Report</label>
                 </div>
               </div>
-              <div class="field">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="otherBranches" value="true" checked>
-                  <label>Other Branches</label>
-                </div>
-              </div>
+
               <div class="field">
                 <div class="ui checkbox">
                   <input type="checkbox" name="clientHooks" value="true" checked>
@@ -237,8 +216,8 @@ Repository service         </a>
               </div>
               <div class="field">
                 <div class="ui checkbox">
-                  <input type="checkbox" name="predefinedQueries" value="true" checked>
-                  <label>Use Predefined Queries</label>
+                  <input type="checkbox" name="analytics" value="true" checked>
+                  <label>Analytics</label>
                 </div>
               </div>
             </div>

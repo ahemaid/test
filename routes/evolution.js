@@ -29,7 +29,10 @@ router.get('/', function(req, res) {
       arrayLines.forEach(function(element) {
         if (element.includes('Date')) {
           element = element.substr(5);
+          // get the date value
           commitDate = element.split(" ")[0];
+          // reverse the date to look like yyyy-mm-dd
+          commitDate = commitDate.split('-').reverse().join('-')
           if (j === 10){
             j = 0;
             i++;
@@ -47,6 +50,7 @@ router.get('/', function(req, res) {
         }
         if (element.charAt(0) == '+') {
           element = element.substr(2);
+          if(!element.includes("_:file:"))
           diffArray.push({
             'event': 'add',
             'value': element,
@@ -55,6 +59,7 @@ router.get('/', function(req, res) {
           });
         } else if (element.charAt(0) == '-') {
           element = element.substr(2);
+          if(!element.includes("_:file:"))
           diffArray.push({
             'event': 'del',
             'value': element,
