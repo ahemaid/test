@@ -10,16 +10,17 @@ router.get('/', function(req, res) {
   var path = "helper/tools/evolution/evolutionReport.txt";
   var diffArray = [];
   var history = [];
+  var emptyFile = false;
 
   fs.exists(path, function(exists) {
     if (exists) {
-      //var arrayLines =
       var evolutionReport = fs.readFileSync(path).toString();
-
+      if (evolutionReport.includes('+') || evolutionReport.includes('-')) {
+        emptyFile = true;
+      }
       var arrayLines = evolutionReport.split("\n");
       console.log(arrayLines);
 
-      //arrayLines.shift();
       arrayLines.pop();
       var i = 1;
       var j = 0;
@@ -33,7 +34,7 @@ router.get('/', function(req, res) {
           commitDate = element.split(" ")[0];
           // reverse the date to look like yyyy-mm-dd
           commitDate = commitDate.split('-').reverse().join('-')
-          if (j === 10){
+          if (j === 10) {
             j = 0;
             i++;
           }
@@ -42,7 +43,7 @@ router.get('/', function(req, res) {
             id: k,
             content: version,
             start: commitDate,
-            link: '#'+version
+            link: '#' + version
           };
           history.push(commitObject);
           j++;
@@ -50,35 +51,36 @@ router.get('/', function(req, res) {
         }
         if (element.charAt(0) == '+') {
           element = element.substr(2);
-          if(!element.includes("_:file:"))
-          diffArray.push({
-            'event': 'add',
-            'value': element,
-            'version': version,
-            'date': commitDate
-          });
+          if (!element.includes("_:file:"))
+            diffArray.push({
+              'event': 'add',
+              'value': element,
+              'version': version,
+              'date': commitDate
+            });
         } else if (element.charAt(0) == '-') {
           element = element.substr(2);
-          if(!element.includes("_:file:"))
-          diffArray.push({
-            'event': 'del',
-            'value': element,
-            'version': version,
-            'date': commitDate
-          });
+          if (!element.includes("_:file:"))
+            diffArray.push({
+              'event': 'del',
+              'value': element,
+              'version': version,
+              'date': commitDate
+            });
         }
       });
-
+    }
+    if (emptyFile === true)
       res.render('evolution', {
         title: 'Evolution Report',
         evolutionReport: diffArray,
         history: history
       });
-    }
+    else
+      res.render('emptyPage', {
+        title: 'Empty Page'
+      });
   });
-
-
-
 });
 
 module.exports = router;

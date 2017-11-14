@@ -219,7 +219,7 @@ router.get('/', function(req, res) {
             console.log('this is client-side services');
             shell.cd('../../../../repoFolder');
             shell.cp('-r', '../VoColApp/helper/tools/VoColClient/Hooks', 'VoColClient/');
-            shell.cd('-P', 'VoColClient');
+            shell.cd('-P', 'VoColClient/Hooks');
             shell.exec("pwd");
             //TODO: change to obj.server
             shell.exec('sed -i "s/serverURL/localhost:3000/g" pre-commit', {
@@ -254,7 +254,7 @@ router.get('/', function(req, res) {
             //shell.cd('../VoColApp/helper/scripts/'); //VoColClient
             //shell.exec('pwd').stdout; //VoColClient
 
-            shell.cd('../VoColApp/helper/tools/VoColClient/'); //VoColClient
+            shell.cd('../../../VoColApp/helper/tools/VoColClient/'); //VoColClient
             shell.exec('pwd').stdout; //VoColClient
 
           }
