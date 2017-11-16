@@ -61,7 +61,7 @@
         <ul id="leftHeaderUl" class="nav navbar-nav">
 
           <li id="homeLi"><a href="./">Home</a></li>
-
+  
           <% if (userConfigurations[0] ) {%>
             <li id="editingLi"><a href="./turtleEditor">Editing</a></li>
             <% } %>
@@ -78,12 +78,10 @@
                             <li id="evolutionLi"><a href="./evolution">Evolution</a></li>
                             <% } %>
                               <% if (userConfigurations[5]) {%>
-<li><a href="./analytics">Analytics</a></li><% } %>
-                              
-
-                                <li id="validationLi"><a href="./validation">Validation</a></li>
-
-                                
+<li><a href="./analytics">Analytics</a></li>
+<% } %>
+<li id="validationLi"><a href="./validation">Validation</a></li>
+                        
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
