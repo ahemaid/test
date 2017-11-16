@@ -7,24 +7,24 @@
   <title>
     <%- title %>
   </title>
-<link href="dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css">  <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="/stylesheets/bootstrap-treeview.min.css">
-  <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
-  <link rel="stylesheet" href="/stylesheets/yasqe.min.css">
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <link href="/stylesheets/mTab-style.css" type="text/css" rel="stylesheet" />
+<link href="dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css">  <link rel="stylesheet" href="./javascripts/bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./javascripts/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap-treeview.min.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/dist/semantic.min.css">
+  <link rel="stylesheet" href="./stylesheets/yasqe.min.css">
+  <link rel="stylesheet" href="./stylesheets/style.css">
+  <link href="./stylesheets/mTab-style.css" type="text/css" rel="stylesheet" />
   <script src="dist/vis.js"></script>
-  <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="/semantic/dist/semantic.min.js"></script>
-  <script src="/javascripts/d3sparql.js"></script>
-  <script src="/javascripts/jquery-mTab-min.js"></script>
-  <script src="/javascripts/yasqe.bundled.js"></script>
-  <script src="/javascripts/bootstrap-treeview.min.js"></script>
-  <script src="/javascripts/d3.min.js"></script>
-  <script src="/javascripts/lodash.js"></script>
+  <script src="./javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="./javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./semantic/dist/semantic.min.js"></script>
+  <script src="./javascripts/d3sparql.js"></script>
+  <script src="./javascripts/jquery-mTab-min.js"></script>
+  <script src="./javascripts/yasqe.bundled.js"></script>
+  <script src="./javascripts/bootstrap-treeview.min.js"></script>
+  <script src="./javascripts/d3.min.js"></script>
+  <script src="./javascripts/lodash.js"></script>
   <!-- global replaceAll fuction to remove string from text of turtle code -->
   <script>
     String.prototype.replaceAll = function(search, replacement) {
@@ -60,37 +60,37 @@
       <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true" style="">
         <ul id="leftHeaderUl" class="nav navbar-nav">
 
-          <li id="homeLi"><a href="/">Home</a></li>
+          <li id="homeLi"><a href="./">Home</a></li>
 
           <% if (userConfigurations[0] ) {%>
-            <li id="editingLi"><a href="/turtleEditor">Editing</a></li>
+            <li id="editingLi"><a href="./turtleEditor">Editing</a></li>
             <% } %>
               <% if ( userConfigurations[1] ) {%>
-                <li id="documentationLi" ><a href="/documentation">Documentation</a></li>
+                <li id="documentationLi" ><a href="./documentation">Documentation</a></li>
                 <% } %>
                   <% if (userConfigurations[2]){ %>
-                    <li id="visualizationLi" ><a href="/visualization">Visualization</a></li>
+                    <li id="visualizationLi" ><a href="./visualization">Visualization</a></li>
                     <% } %>
                       <% if (userConfigurations[3] ) {%>
-                        <li id="queryingLi" ><a href="/querying">Querying</a></li>
+                        <li id="queryingLi" ><a href="./querying">Querying</a></li>
                         <% } %>
                           <% if (userConfigurations[4] ) {%>
-                            <li id="evolutionLi"><a href="/evolution">Evolution</a></li>
+                            <li id="evolutionLi"><a href="./evolution">Evolution</a></li>
                             <% } %>
                               <% if (userConfigurations[5]) {%>
-<li><a href="/analytics">Analytics</a></li><% } %>
-                              <% if (userConfigurations[6]){ %>
+<li><a href="./analytics">Analytics</a></li><% } %>
+                              
 
-                                <li id="validationLi"><a href="/validation">Validation</a></li>
+                                <li id="validationLi"><a href="./validation">Validation</a></li>
 
-                                <% } %>
+                                
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="https://github.com/ahemaid/conceptView"><i class="circular inverted github icon"></i></a>
           </li>
           <li>
-            <a href="/contactus"><i class="circular inverted help icon"></i></a>
+            <a href="./contactus"><i class="circular inverted help icon"></i></a>
           </li>
           <li> <a class="navbar-brand" href="#">    <img src="images/logo2.png" width="90" height="30" alt=""></a>
           </li>

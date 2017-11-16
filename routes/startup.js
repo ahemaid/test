@@ -265,16 +265,16 @@ router.get('/', function(req, res) {
           shell.exec('pwd');
           shell.cd('../../../.').stdout;
           // redirect to the start page
-          res.redirect('/');
+          res.redirect('./');
         } else // if it has syntaxErrors
         {
           shell.exec('pwd');
           shell.cd('../VoColApp/').stdout;
-          res.redirect('/validation');
+          res.redirect('./validation');
         }
       });
     } else {
-      res.redirect('/config');
+      res.redirect('./config');
     }
   });
 });

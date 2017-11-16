@@ -1,3 +1,4 @@
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -8,8 +9,8 @@ var routes = require('./routes/index');
 var contactus = require('./routes/contactus');
 var users = require('./routes/users');
 var documentation = require('./routes/documentation');
-var visualization = require('./routes/visualization');
-var turtleEditorLink = require('./routes/turtleEditor');
+//var visualization = require('./routes/visualization');
+//var turtleEditorLink = require('./routes/turtleEditor');
 var analyticsLink = require('./routes/analytics');
 var evolution = require('./routes/evolution');
 var startup = require('./routes/startup');
@@ -21,6 +22,11 @@ var jsonfile  =  require('jsonfile');
 var app = express();
 var watch = require('node-watch');
 var shell = require('shelljs');
+var router = express.Router();
+var proxy = require('express-http-proxy');
+
+//console.log(path.basename());
+//app.base = "/test"
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,39 +41,64 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routing to the available routes on the app
-app.use('/', routes);
-app.use('/contactus', contactus);
-app.use('/users', users);
-app.use('/documentation', documentation);
-app.use('/visualization', visualization);
-app.use('/webvowlLink', express.static("views/webvowl"));
-app.use('/turtleEditorLink', express.static("views/turtleEditor"));
-app.use('/analyticsLink', express.static("views/d3sparql"));
-app.use('/analytics', analyticsLink);
-app.use('/turtleEditor', turtleEditorLink);
-app.use('/evolution', evolution);
-app.use('/startup', startup);
-app.use('/validation', validation);
-app.use('/client', client);
-app.use('/listener', listener);
+app.use('\/\/', routes);
+app.use('\/\/contactus', contactus);
+app.use('\/\/users', users);
+app.use('\/\/documentation', documentation);
+//app.use('\/\/visualization', visualization);
+app.use('\/\/webvowlLink', express.static(path.join(__dirname,"views/webvowl")));
+//app.use('\/\/turtleEditorLink', express.static("views/turtleEditor"));
+app.use('\/\/turtleEditorLink', express.static(path.join(__dirname,"views/turtleEditor")));
+app.use('./analyticsLink', express.static("views/d3sparql"));
+app.use('./analytics', analyticsLink);
+//app.use('\/\/turtleEditor', turtleEditorLink);
+app.use('\/\/evolution', evolution);
+app.use('\/\/startup', startup);
+app.use('\/\/validation', validation);
+app.use('\/\/client', client);
+app.use('\/\/listener', listener);
+//app.use('\/',router)
+
+//app.get('\/\/turtleEditorLink', function (req, res){
+//res.send('hallo'); 
+//res.render('config.ejs', {
+ //   title: 'Configuration App'
+ // });
+//});
+app.use('\/\/fuseki', proxy('localhost:3030', {
+  proxyReqPathResolver: function(req) {
+    return require('url').parse(req.url).path;
+  }
+}));
+
+app.get('\/\/turtleEditor',function(req, res){
+ res.render('turtleEditor', {
+    title: 'Editing'
+  });
+})
+
+app.get('\/\/visualization',function(req, res){
+ res.render('visualization', {
+    title: 'visualization'
+  });
+})
 
 
-
-app.get('/config', function(req, res) {
+app.get('\/\/config', function(req, res) {
   res.render('config.ejs', {
     title: 'Configuration App'
   });
 });
 
 
-app.get('/querying', function(req, res) {
+app.get('\/\/querying', function(req, res) {
   res.render('querying.ejs', {
     title: 'Make a query'
   });
 });
 
 // http post when  a user configurations is submitted
-app.post('/config', function(req, res) {
+app.post('\/\/config', function(req, res) {
   var filepath = __dirname + '/jsonDataFiles/userConfigurations.json';
   // Read the userConfigurations file if exsit to append new data
   jsonfile.readFile(filepath, function(err, obj)  {
@@ -116,13 +147,13 @@ readSyntaxErrorsFile();
 
 // check if the userConfigurations file is exist
 // for the first time of app running
-var path = __dirname + '/jsonDataFiles/userConfigurations.json';
+var path2 = __dirname + '/jsonDataFiles/userConfigurations.json';
 function readUserConfigurationFile() {
-  fs.exists(path, function(exists) {
+  fs.exists(path2, function(exists) {
     if (exists) {
-      var data = fs.readFileSync(path);
+      var data = fs.readFileSync(path2);
       if (data.includes('vocabularyName')) {
-        jsonfile.readFile(path, function(err, obj)  {
+        jsonfile.readFile(path2, function(err, obj)  {
           var menu = Array(7).fill(false);
 
 
@@ -153,7 +184,7 @@ function readUserConfigurationFile() {
     }
   });
 }
-watch(path, {
+watch(path2, {
   recursive: true
 }, function(evt, name) {
   // call if userConfigurations file was changed
@@ -173,12 +204,6 @@ function isEmptyObject(obj) {
 }
 
 //  catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  console.log(req.url);
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
 
 // error handlers
 // development error handler
