@@ -89,7 +89,7 @@ router.post('/', function(req, res) {
 	 }
 
          fs.unlink(inputFileName);
-         res.send(response);
+         res.send("hallo"+response);
 
         });
     }

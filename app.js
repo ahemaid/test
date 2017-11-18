@@ -11,7 +11,7 @@ var users = require('./routes/users');
 var documentation = require('./routes/documentation');
 //var visualization = require('./routes/visualization');
 //var turtleEditorLink = require('./routes/turtleEditor');
-var analyticsLink = require('./routes/analytics');
+//var analyticsLink = require('./routes/analytics');
 var evolution = require('./routes/evolution');
 var startup = require('./routes/startup');
 var validation = require('./routes/validation');
@@ -49,8 +49,8 @@ app.use('\/\/documentation', documentation);
 app.use('\/\/webvowlLink', express.static(path.join(__dirname,"views/webvowl")));
 //app.use('\/\/turtleEditorLink', express.static("views/turtleEditor"));
 app.use('\/\/turtleEditorLink', express.static(path.join(__dirname,"views/turtleEditor")));
-app.use('./analyticsLink', express.static("views/d3sparql"));
-app.use('./analytics', analyticsLink);
+app.use('\/\/analyticsLink', express.static(path.join(__dirname,"views/d3sparql")));
+//app.use('./analytics', analyticsLink);
 //app.use('\/\/turtleEditor', turtleEditorLink);
 app.use('\/\/evolution', evolution);
 app.use('\/\/startup', startup);
@@ -65,11 +65,38 @@ app.use('\/\/listener', listener);
  //   title: 'Configuration App'
  // });
 //});
-app.use('\/\/fuseki', proxy('localhost:3030', {
+app.use('\/\/fuseki/', proxy('localhost:3030/', {
   proxyReqPathResolver: function(req) {
+	//console.log(req);
+	console.log( require('url').parse(req.url).path);
     return require('url').parse(req.url).path;
   }
 }));
+
+
+app.use('\/\/fusekiOld/',  proxy('localhost:3080/',  {
+    proxyReqPathResolver:  function(req)  {
+        //console.log(req);
+        console.log( require('url').parse(req.url).path);
+        return  require('url').parse(req.url).path;
+    }
+}));
+
+
+
+
+app.get('\/\/turtleEditor',function(req, res){
+ res.render('turtleEditor', {
+    title: 'Editing'
+  });
+})
+
+app.get('\/\/analytics',function(req, res){
+ res.render('analytics', {
+    title: 'Analytics'
+  });
+})
+
 
 app.get('\/\/turtleEditor',function(req, res){
  res.render('turtleEditor', {
