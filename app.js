@@ -1,4 +1,3 @@
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,24 +8,19 @@ var routes = require('./routes/index');
 var contactus = require('./routes/contactus');
 var users = require('./routes/users');
 var documentation = require('./routes/documentation');
-//var visualization = require('./routes/visualization');
-//var turtleEditorLink = require('./routes/turtleEditor');
-//var analyticsLink = require('./routes/analytics');
 var evolution = require('./routes/evolution');
 var startup = require('./routes/startup');
 var validation = require('./routes/validation');
-var client =  require('./routes/clientServices');
-var listener =  require('./routes/listener');
+var client = require('./routes/clientServices');
+var listener = require('./routes/listener');
 var fs = require('fs');
-var jsonfile  =  require('jsonfile');
+var  jsonfile  =  require('jsonfile');
 var app = express();
 var watch = require('node-watch');
 var shell = require('shelljs');
 var router = express.Router();
-var proxy = require('express-http-proxy');
-
-//console.log(path.basename());
-//app.base = "/test"
+var  proxy  =  require('express-http-proxy');
+var shell = require('shelljs');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,72 +34,143 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.locals.isExistSyntaxError = false;
+var ErrorsFilePath = __dirname + '/jsonDataFiles/syntaxErrors.json';
+
+function readSyntaxErrorsFile() {
+  if (fs.existsSync(ErrorsFilePath)) {
+    var data = fs.readFileSync(ErrorsFilePath);
+    if (data.toString().includes('Error')) {
+      app.locals.isExistSyntaxError = true;
+    } else {
+      app.locals.isExistSyntaxError = false;
+    }
+  }
+}
+// call at the first time
+readSyntaxErrorsFile();
+
+// check if the userConfigurations file is exist
+// for the first time of app running
+var userConfigurationsFile = __dirname + '/jsonDataFiles/userConfigurations.json';
+var repositoryURL = "";
+app.locals.projectTitle = "MobiVoc";
+app.locals.userConfigurations = Array(6).fill(true);
+function readUserConfigurationFile() {
+  if (fs.existsSync(userConfigurationsFile)) {
+    var data = fs.readFileSync(userConfigurationsFile);
+    if (data.includes('vocabularyName')) {
+      jsonfile.readFile(userConfigurationsFile, function(err, obj) {
+        var menu = Array(6).fill(false);
+        Object.keys(obj).forEach(function(k) {
+          if (k === "vocabularyName") {
+            // store projectTitle to be used by header.ejs
+            app.locals.projectTitle = obj[k];
+          } else if (k === "repositoryURL") {
+            // store repositoryURL to be checked if it was uploaded
+            // for first time or was changed to another repository
+            repositoryURL = obj[k];
+          } else if (k === "turtleEditor") { //menu[0]
+            menu[0] = true;
+            // do more stuff
+          } else if (k === "documentationGeneration") { //menu[1]
+            menu[1] = true;
+          } else if (k === "visualization") { //menu[2]
+            menu[2] = true;
+          } else if (k === "sparqlEndPoint") { //menu[3]
+            menu[3] = true;
+          } else if (k === "evolutionReport") { //menu[4]
+            menu[4] = true;
+          } else if (k === "analytics") { //menu[5]
+            menu[5] = true;
+          }
+        });
+        app.locals.userConfigurations = menu;
+        console.log(menu);
+      });
+    }
+  }
+}
+// call at the first time
+readUserConfigurationFile();
+var currentrepositoryURL = "";
+var repoFolderPath = "../repoFolder";
+if (fs.existsSync(repoFolderPath)) {
+   currentrepositoryURL = shell.exec('git ls-remote --get-url', {
+    silent: false
+  }).stdout;
+  shell.cd('../VoColApp', {
+  silent: false
+}).stdout;
+}
+// check if the user has an error and this was for first time or
+// when user has changed to another repositoryURL
+// currentrepositoryURL === "" means it is the first time
+if (app.locals.isExistSyntaxError === true && (currentrepositoryURL === "" || repositoryURL != currentrepositoryURL)){
+  var emptyPageFunc = function (req, res) {
+      res.render('emptyPage', {
+          title: 'Empty Page'
+      });
+  }
+  app.get("\/\/", emptyPageFunc);
+  app.get('\/\/analytics',emptyPageFunc);
+  app.get('\/\/documentation',emptyPageFunc);
+  app.get('\/\/visualization',emptyPageFunc);
+  app.get('\/\/turtleEditor',emptyPageFunc);
+  app.get('\/\/evolution',emptyPageFunc);
+  app.get('\/\/analytics',emptyPageFunc);
+  app.get('\/\/visualization',emptyPageFunc);
+  app.get('\/\/querying',emptyPageFunc);
+}
+
+
 // routing to the available routes on the app
 app.use('\/\/', routes);
 app.use('\/\/contactus', contactus);
 app.use('\/\/users', users);
 app.use('\/\/documentation', documentation);
-//app.use('\/\/visualization', visualization);
-app.use('\/\/webvowlLink', express.static(path.join(__dirname,"views/webvowl")));
-//app.use('\/\/turtleEditorLink', express.static("views/turtleEditor"));
-app.use('\/\/turtleEditorLink', express.static(path.join(__dirname,"views/turtleEditor")));
-app.use('\/\/analyticsLink', express.static(path.join(__dirname,"views/d3sparql")));
-//app.use('./analytics', analyticsLink);
-//app.use('\/\/turtleEditor', turtleEditorLink);
+app.use('\/\/webvowlLink', express.static(path.join(__dirname, "views/webvowl")));
+app.use('\/\/turtleEditorLink', express.static(path.join(__dirname, "views/turtleEditor")));
+app.use('\/\/analyticsLink', express.static(path.join(__dirname, "views/d3sparql")));
 app.use('\/\/evolution', evolution);
 app.use('\/\/startup', startup);
 app.use('\/\/validation', validation);
 app.use('\/\/client', client);
 app.use('\/\/listener', listener);
-//app.use('\/',router)
 
-//app.get('\/\/turtleEditorLink', function (req, res){
-//res.send('hallo'); 
-//res.render('config.ejs', {
- //   title: 'Configuration App'
- // });
-//});
-app.use('\/\/fuseki/', proxy('localhost:3030/', {
-  proxyReqPathResolver: function(req) {
-	//console.log(req);
-	console.log( require('url').parse(req.url).path);
-    return require('url').parse(req.url).path;
-  }
+
+app.use('\/\/fuseki/',  proxy('localhost:3030/',   {  
+  proxyReqPathResolver:   function(req)  {
+    console.log(require('url').parse(req.url).path);    
+    return  require('url').parse(req.url).path;  
+  }
 }));
 
 
-app.use('\/\/fusekiOld/',  proxy('localhost:3080/',  {
-    proxyReqPathResolver:  function(req)  {
-        //console.log(req);
-        console.log( require('url').parse(req.url).path);
-        return  require('url').parse(req.url).path;
-    }
+app.use('\/\/fusekiOld/', proxy('localhost:3080/', {
+  proxyReqPathResolver: function(req) {
+    console.log(require('url').parse(req.url).path);
+    return require('url').parse(req.url).path;
+  }
 }));
 
 
-
-
-app.get('\/\/turtleEditor',function(req, res){
- res.render('turtleEditor', {
-    title: 'Editing'
-  });
-})
-
-app.get('\/\/analytics',function(req, res){
- res.render('analytics', {
+app.get('\/\/analytics', function(req, res) {
+  res.render('analytics', {
     title: 'Analytics'
   });
 })
 
 
-app.get('\/\/turtleEditor',function(req, res){
- res.render('turtleEditor', {
+app.get('\/\/turtleEditor', function(req, res) {
+  res.render('turtleEditor', {
     title: 'Editing'
   });
 })
 
-app.get('\/\/visualization',function(req, res){
- res.render('visualization', {
+app.get('\/\/visualization', function(req, res) {
+  res.render('visualization', {
     title: 'visualization'
   });
 })
@@ -145,80 +210,29 @@ app.post('\/\/config', function(req, res) {
   });
 });
 
-app.locals.isExistSyntaxError = false;
-var ErrorsFilePath = __dirname + '/jsonDataFiles/syntaxErrors.json';
-function readSyntaxErrorsFile() {
-  fs.exists(ErrorsFilePath, function(exists) {
-    if (exists) {
-      var data = fs.readFileSync(ErrorsFilePath);
-      if (data.toString().includes('Error')) {
-        app.locals.isExistSyntaxError = true;
-      }
-      else
-      {
-        app.locals.isExistSyntaxError = false;
-      }
-    }
-  });
-}
+// monitor ErrorsFilePath
 watch(ErrorsFilePath, {
   recursive: true
 }, function(evt, name) {
-  // call if SyntaxErrors file was changed
-  readSyntaxErrorsFile();
+  if (evt == 'update') {
+    // call if SyntaxErrors file was changed
+    readSyntaxErrorsFile();
+    console.log(app.locals.isExistSyntaxError);
+  }
 });
-// call at the first time
-readSyntaxErrorsFile();
 
 
-
-// check if the userConfigurations file is exist
-// for the first time of app running
-var path2 = __dirname + '/jsonDataFiles/userConfigurations.json';
-function readUserConfigurationFile() {
-  fs.exists(path2, function(exists) {
-    if (exists) {
-      var data = fs.readFileSync(path2);
-      if (data.includes('vocabularyName')) {
-        jsonfile.readFile(path2, function(err, obj)  {
-          var menu = Array(7).fill(false);
-
-
-          Object.keys(obj).forEach(function(k) {
-            if (k === "vocabularyName") {
-              // store projectTitle to be used by header.ejs
-              app.locals.projectTitle = obj[k];
-            } else if (k === "turtleEditor") { //menu[0]
-              menu[0] = true;
-              // do more stuff
-            } else if (k === "documentationGeneration") { //menu[1]
-              menu[1] = true;
-            } else if (k === "visualization") { //menu[2]
-              menu[2] = true;
-            } else if (k === "sparqlEndPoint") { //menu[3]
-              menu[3] = true;
-            } else if (k === "evolutionReport") { //menu[4]
-              menu[4] = true;
-            } else if (k === "analytics") { //menu[5]
-              menu[5] = true;
-            } else if (k === "syntaxValidation") { //menu[6]
-              menu[6] = true;
-            }
-          });
-          app.locals.userConfigurations = menu;
-        });
-      }
-    }
-  });
-}
-watch(path2, {
+// monitor changed userConfigurationsFile
+watch(userConfigurationsFile, {
   recursive: true
 }, function(evt, name) {
-  // call if userConfigurations file was changed
-  readUserConfigurationFile();
+  if (evt == 'update') {
+    // call if userConfigurations file was changed
+    readUserConfigurationFile();
+    console.log(app.locals.isExistSyntaxError);
+  }
 });
-// call at the first time
-readUserConfigurationFile();
+
 
 
 function isEmptyObject(obj) {

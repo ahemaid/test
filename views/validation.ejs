@@ -4,7 +4,7 @@
 <br/>
 <% if(isExistSyntaxError)  { %>
 <%- syntaxErrors %>
-<h3 style="color:red">Please fix the error(s) in the turtle file(s),<br/> then refill again the configurations by click the configuration page tab above.</h3>
+<h3 style="color:red">Please fix the error(s) in the turtle file(s).</h3>
 <% } else{%>
 <h2>No errors were found</h2>
 <% }%>
@@ -23,10 +23,9 @@
       $('#documentationLi').remove();
       $('#queryingLi').remove();
       $('#evolutionLi').remove();
-      $('#leftHeaderUl').append('<li><a href="/config">Configuration Form</a></li>');
+      $('#leftHeaderUl').append('<li><a href="./config">Configuration Form</a></li>');
       $('#homeLi').remove();
     }
-debugger;
   }
 
 </script>

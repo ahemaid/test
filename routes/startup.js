@@ -38,11 +38,7 @@ router.get('/', function(req, res) {
         if (repositoryURL[repositoryURL.length - 1] === ('/'))
           repositoryURL = repositoryURL.slice(0, -1);
 
-        //#echo "${repository:0:8}${user}:${password}@${repository:8}.git"
 
-        //TODO: to make the below command
-        //source .nvm/nvm.sh
-        //shell.exec('source .nvm/nvm.sh');
         shell.exec('pwd', {
           silent: false
         }).stdout;
