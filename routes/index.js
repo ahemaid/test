@@ -9,11 +9,11 @@ router.get('/', function(req, res) {
 
   // check if the userConfigurations file is exist
   // for the first time of app running
-  console.log(process.cwd());
+  console.log("from index.js "+process.cwd());
   var path = "jsonDataFiles/userConfigurations.json";
   fs.exists(path, function(exists) {
     if (!exists) {
-      res.redirect('/config');
+      res.redirect('./config');
     } else {
       var data = fs.readFileSync(path);
       if (data.includes('vocabularyName')) {
@@ -28,7 +28,7 @@ router.get('/', function(req, res) {
             });
         });
       } else {
-        res.redirect('/config');
+        res.redirect('./config');
       }
     }
   });

@@ -8,6 +8,7 @@ var app = express();
 var  jsonfile  =  require('jsonfile');
 var http = require('http');
 var path = require('path');
+var spawn = require('child_process').spawn;
 
 router.post('/', function(req, res) {
 var path = "jsonDataFiles/userConfigurations.json";
@@ -38,16 +39,16 @@ fs.exists(path, function(exists) {
       //     req.on('data', function(chunk) {
               console.log('event received');
               try {
-                var data = JSON.parse(res);
+                var data = JSON.parse(req.body.payload);
 
-                console.log(res);
+                console.log(data);
 
                 var repositoryName = "";
                 var branchName = "";
                 var commitMessage = "";
 
                 if (repositoryService === 'gitHub') {
-                  repositoryName = data.repository.html_url;
+                  repositoryName = data.repository.name;
                   branchName = data.ref.split('/')[2];
                   commitMessage = data.head_commit.message;
                 } else if (repositoryService === 'gitLab') {
@@ -64,12 +65,17 @@ fs.exists(path, function(exists) {
                   commitMessage = data.changesets.values[0].toCommit.message;
                 }
 
-                if (branchName.includes(branchNameParam) && repositoryNameParam === repositoryName && !commitMessage.includes("merge")) {
+                if (branchName == branchNameParam && repositoryNameParam === repositoryName && !commitMessage.includes("merge")) {
                   console.log('contains');
 
                   commitMessage = commitMessage.replace(/\n/g, '');
 
-      shell.cd('../../repoFolder', {
+      shell.exec('pwd', {
+        silent: false
+      }).stdout;
+
+
+      shell.cd('../repoFolder', {
         silent: false
       }).stdout;
       shell.exec('git checkout ${2}', {
@@ -154,7 +160,7 @@ fs.exists(path, function(exists) {
         ////////////////////////////////////////////////////////////////////
         //// TurtleEditor
         //////////////////////////////////////////////////////////////////////
-        if (turtleEditor === true && obj.repositoryService === "gitHub") {
+        if (obj.turtleEditor === "true" && obj.repositoryService === "gitHub") {
           shell.exec('pwd', {
             silent: false
           }).stdout;
@@ -195,6 +201,7 @@ fs.exists(path, function(exists) {
         // client hooks
         ////////////////////////////////////////////////////////////////////
         //TODO: just disable for testing perpose
+        /*
         if (obj.clientHooks === "true") {
           shell.exec("pwd"); // in repoFolder path
           console.log('this is client-side services');
@@ -238,7 +245,7 @@ fs.exists(path, function(exists) {
           shell.cd('../VoColApp/helper/tools/VoColClient/'); //VoColClient
           shell.exec('pwd').stdout; //VoColClient
 
-        }
+        }*/
         // run external bash script to start up both fuseki-server and VoColApp
         const child = spawn('sh', ['../../scripts/run.sh', '&']);
         // show output live of process on std
