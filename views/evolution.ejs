@@ -3,7 +3,7 @@
 <% }else{ %>
   <% include header %>
 
-  <div style="margin-top: 5% !important;"></div>
+  <div style="margin-top: 3% !important;"></div>
   <div class="ui grid">
     <div class="ui container">
   <h2> <%- title %></h2>
@@ -40,13 +40,13 @@
       var commitData = <%- JSON.stringify(evolutionReport) %>;
 
       console.log(commitData);
-      var versionsJSONArray = _.uniqBy(commitData, v => [v.version, v.date].join());
+      var versionsJSONArray = _.uniqBy(commitData, v => [ v.commitTimestamp].join());
 
       console.log(versionsJSONArray);
       versionsJSONArray.forEach(function(item) {
-        $("#commitDetails").append("<br /><div  id=" + item.version + "><h2>" + item.version + '-' + item.date + "</h2>");
+        $("#commitDetails").append("<br /><div  id=" + item.commitTimestamp + "><h4>User: &quot;"+item.pusher+"&quot; - Commit Message: &quot;" + item.commitMessage + '&quot; - Timestamp: &quot;' + item.commitTimestamp + "&quot;</h4>");
         commitData.forEach(function(element) {
-          if (element.version === item.version) {
+          if (element.commitTimestamp === item.commitTimestamp) {
             if (element.event === 'add')
               $("#commitDetails").append("<h6><p class='bg-success text-success' style='margin-right:390px;'> + " + element.value + "</p></h6>");
             // else if (element.event === 'del')
@@ -55,9 +55,9 @@
           }
         })
         commitData.forEach(function(element) {
-          if (element.version === item.version) {
+          if (element.commitTimestamp === item.commitTimestamp) {
             if (element.event === 'del')
-              $("#commitDetails").append("<h6><p class='bg-danger text-danger' style='margin-right:390px;'>  - " + element.value + "</p></h6>");
+              $("#commitDetails").append("<h6><p class='bg-danger text-danger' style='margin-right:390px;'>  - " + element.value  + "</p></h6>");
 
           }
         })

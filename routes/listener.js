@@ -188,7 +188,7 @@ router.post('/', function(req, res) {
                   // add commit details when user make new commit
                   var commitDetails = "";
                   if (commitTimestamp != "")
-                    commitDetails = commitMessage + "\n" + pusher + "\n" + commitTimestamp;
+                    commitDetails = "commitTimestamp:"+commitTimestamp + "\n" + "pusher:"+pusher + "\n" + "commitMessage:"+commitMessage;
                   var evolutionReport = shell.exec('./owl2diff ../evolution/SingleVoc.ttl ../serializations/SingleVoc.ttl', {
                     silent: false
                   }).stdout;
