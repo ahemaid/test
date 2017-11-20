@@ -97,6 +97,19 @@ router.get('/', function(req, res) {
           silent: false
         }).stdout;
 
+        // check // check if the user has an error and this was for first time or
+        // when user has changed to another repositoryURL
+        // currentrepositoryURL === "" means it is the first time
+          var currentrepositoryURL = shell.exec('git ls-remote --get-url', {
+            silent: false
+          }).stdout;
+          if(currentrepositoryURL != obj.repositoryURL){
+            shell.exec('echo -n > ../VoColApp/helper/tools/evolution/evolutionReport.txt').stdout;
+            console.log("evolutionReport.txt was deleted");
+
+          }
+        
+
 
         shell.exec('echo -n > ../VoColApp/jsonDataFiles/syntaxErrors.json').stdout;
         var pass = true;
@@ -189,12 +202,12 @@ router.get('/', function(req, res) {
               shell.cd('../owl2vcs/').stdout;
               //  shell.mkdir('../evolution');
               shell.exec('pwd');
-               var generationDate = 'Date:'+shell.exec('date "+%d-%m-%Y %H-%M-%S"').stdout;
-               var evolutionReport = shell.exec('./owl2diff ../evolution/SingleVoc.ttl ../serializations/SingleVoc.ttl', {
-                 silent: false
-               }).stdout;
-              if (evolutionReport.includes('+')||evolutionReport.includes('-')) {
-                fs.appendFileSync('../evolution/evolutionReport.txt', generationDate.trim()+evolutionReport);
+              var generationDate = 'Date:' + shell.exec('date "+%d-%m-%Y %H-%M-%S"').stdout;
+              var evolutionReport = shell.exec('./owl2diff ../evolution/SingleVoc.ttl ../serializations/SingleVoc.ttl', {
+                silent: false
+              }).stdout;
+              if (evolutionReport.includes('+') || evolutionReport.includes('-')) {
+                fs.appendFileSync('../evolution/evolutionReport.txt', generationDate.trim() + evolutionReport);
               }
 
               // Do something
@@ -204,7 +217,7 @@ router.get('/', function(req, res) {
             }).stdout;
             shell.mkdir('../evolution').stdout;
             shell.cp('../serializations/SingleVoc.ttl', '../evolution/SingleVoc.ttl').stdout;
-                }
+          }
 
           ////////////////////////////////////////////////////////////////////
           // client hooks

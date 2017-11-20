@@ -95,6 +95,10 @@ function readUserConfigurationFile() {
 }
 // call at the first time
 readUserConfigurationFile();
+
+// check if the user has an error and this was for first time or
+// when user has changed to another repositoryURL
+// currentrepositoryURL === "" means it is the first time
 var currentrepositoryURL = "";
 var repoFolderPath = "../repoFolder";
 if (fs.existsSync(repoFolderPath)) {
@@ -105,16 +109,15 @@ if (fs.existsSync(repoFolderPath)) {
     silent: false
   }).stdout;
 }
-// check if the user has an error and this was for first time or
-// when user has changed to another repositoryURL
-// currentrepositoryURL === "" means it is the first time
-console.log('it comes again for app.js');
-// function changeRoutes(){
+
 app.locals.showEmptyPge = false;
 function showEmptyPgeFunc(){
 if (app.locals.isExistSyntaxError === true && (currentrepositoryURL === "" || repositoryURL != currentrepositoryURL)) {
 app.locals.showEmptyPge = true;
 }
+else
+app.locals.showEmptyPge = false;
+console.log('showEmptyPge'+app.locals.showEmptyPge);
 }
 showEmptyPgeFunc();
 // console.log('error for first time');
