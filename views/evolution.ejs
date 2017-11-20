@@ -1,4 +1,8 @@
-<% include header %>
+<% if (showEmptyPge){ %>
+<% include emptyPage %>
+<% }else{ %>
+  <% include header %>
+
   <div style="margin-top: 5% !important;"></div>
   <div class="ui grid">
     <div class="ui container">
@@ -12,6 +16,7 @@
 </div>
 
   <% include footer %>
+  <% } %>
 
     <script type="text/javascript">
       // DOM element where the Timeline will be attached

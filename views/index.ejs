@@ -1,11 +1,15 @@
-<% include header %>
-<div style="margin-top: 5% !important;"></div>   
+
+<% if (showEmptyPge){ %>
+<% include emptyPage %>
+<% }else{ %>
+  <% include header %>
+
+<div style="margin-top: 5% !important;"></div>
 
 <div class="ui grid">
     <div class="ui container">
       <%- homePage %>
     </div>
   </div>
-
-
   <% include footer %>
+  <% } %>

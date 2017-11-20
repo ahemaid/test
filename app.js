@@ -57,6 +57,7 @@ var userConfigurationsFile = __dirname + '/jsonDataFiles/userConfigurations.json
 var repositoryURL = "";
 app.locals.projectTitle = "MobiVoc";
 app.locals.userConfigurations = Array(6).fill(true);
+
 function readUserConfigurationFile() {
   if (fs.existsSync(userConfigurationsFile)) {
     var data = fs.readFileSync(userConfigurationsFile);
@@ -97,97 +98,109 @@ readUserConfigurationFile();
 var currentrepositoryURL = "";
 var repoFolderPath = "../repoFolder";
 if (fs.existsSync(repoFolderPath)) {
-   currentrepositoryURL = shell.exec('git ls-remote --get-url', {
+  currentrepositoryURL = shell.exec('git ls-remote --get-url', {
     silent: false
   }).stdout;
   shell.cd('../VoColApp', {
-  silent: false
-}).stdout;
+    silent: false
+  }).stdout;
 }
 // check if the user has an error and this was for first time or
 // when user has changed to another repositoryURL
 // currentrepositoryURL === "" means it is the first time
-if (app.locals.isExistSyntaxError === true && (currentrepositoryURL === "" || repositoryURL != currentrepositoryURL)){
-  var emptyPageFunc = function (req, res) {
-      res.render('emptyPage', {
-          title: 'Empty Page'
-      });
-  }
-  app.get("\/\/", emptyPageFunc);
-  app.get('\/\/analytics',emptyPageFunc);
-  app.get('\/\/documentation',emptyPageFunc);
-  app.get('\/\/visualization',emptyPageFunc);
-  app.get('\/\/turtleEditor',emptyPageFunc);
-  app.get('\/\/evolution',emptyPageFunc);
-  app.get('\/\/analytics',emptyPageFunc);
-  app.get('\/\/visualization',emptyPageFunc);
-  app.get('\/\/querying',emptyPageFunc);
+console.log('it comes again for app.js');
+// function changeRoutes(){
+app.locals.showEmptyPge = false;
+function showEmptyPgeFunc(){
+if (app.locals.isExistSyntaxError === true && (currentrepositoryURL === "" || repositoryURL != currentrepositoryURL)) {
+app.locals.showEmptyPge = true;
 }
+}
+showEmptyPgeFunc();
+// console.log('error for first time');
+//   var emptyPageFunc = function(req, res) {
+//     res.render('emptyPage', {
+//       title: 'Empty Page'
+//     });
+//   }
+//   app.get("\/\/", emptyPageFunc);
+//   app.get('\/\/analytics', emptyPageFunc);
+//   app.get('\/\/documentation', emptyPageFunc);
+//   app.get('\/\/visualization', emptyPageFunc);
+//   app.get('\/\/turtleEditor', emptyPageFunc);
+//   app.get('\/\/evolution', emptyPageFunc);
+//   app.get('\/\/analytics', emptyPageFunc);
+//   app.get('\/\/visualization', emptyPageFunc);
+//   app.get('\/\/querying', emptyPageFunc);
+//   app.use('\/\/validation', validation);
+//
+// } else {
+
+  // routing to the available routes on the app
+  app.use('\/\/', routes);
+  app.use('\/\/contactus', contactus);
+  app.use('\/\/users', users);
+  app.use('\/\/documentation', documentation);
+  app.use('\/\/webvowlLink', express.static(path.join(__dirname, "views/webvowl")));
+  app.use('\/\/turtleEditorLink', express.static(path.join(__dirname, "views/turtleEditor")));
+  app.use('\/\/analyticsLink', express.static(path.join(__dirname, "views/d3sparql")));
+  app.use('\/\/evolution', evolution);
+  app.use('\/\/startup', startup);
+  app.use('\/\/validation', validation);
+  app.use('\/\/client', client);
+  app.use('\/\/listener', listener);
 
 
-// routing to the available routes on the app
-app.use('\/\/', routes);
-app.use('\/\/contactus', contactus);
-app.use('\/\/users', users);
-app.use('\/\/documentation', documentation);
-app.use('\/\/webvowlLink', express.static(path.join(__dirname, "views/webvowl")));
-app.use('\/\/turtleEditorLink', express.static(path.join(__dirname, "views/turtleEditor")));
-app.use('\/\/analyticsLink', express.static(path.join(__dirname, "views/d3sparql")));
-app.use('\/\/evolution', evolution);
-app.use('\/\/startup', startup);
-app.use('\/\/validation', validation);
-app.use('\/\/client', client);
-app.use('\/\/listener', listener);
+  app.use('\/\/fuseki/',  proxy('localhost:3030/',   {  
+    proxyReqPathResolver:   function(req)  {
+      console.log(require('url').parse(req.url).path);    
+      return  require('url').parse(req.url).path;  
+    }
+  }));
 
 
-app.use('\/\/fuseki/',  proxy('localhost:3030/',   {  
-  proxyReqPathResolver:   function(req)  {
-    console.log(require('url').parse(req.url).path);    
-    return  require('url').parse(req.url).path;  
-  }
-}));
+  app.use('\/\/fusekiOld/', proxy('localhost:3080/', {
+    proxyReqPathResolver: function(req) {
+      console.log(require('url').parse(req.url).path);
+      return require('url').parse(req.url).path;
+    }
+  }));
 
 
-app.use('\/\/fusekiOld/', proxy('localhost:3080/', {
-  proxyReqPathResolver: function(req) {
-    console.log(require('url').parse(req.url).path);
-    return require('url').parse(req.url).path;
-  }
-}));
+  app.get('\/\/analytics', function(req, res) {
+    res.render('analytics', {
+      title: 'Analytics'
+    });
+  })
 
 
-app.get('\/\/analytics', function(req, res) {
-  res.render('analytics', {
-    title: 'Analytics'
+  app.get('\/\/turtleEditor', function(req, res) {
+    res.render('turtleEditor', {
+      title: 'Editing'
+    });
+  })
+
+  app.get('\/\/visualization', function(req, res) {
+    res.render('visualization', {
+      title: 'visualization'
+    });
+  })
+
+
+  app.get('\/\/querying', function(req, res) {
+    res.render('querying.ejs', {
+      title: 'Make a query'
+    });
   });
-})
 
 
-app.get('\/\/turtleEditor', function(req, res) {
-  res.render('turtleEditor', {
-    title: 'Editing'
+  app.get('\/\/config', function(req, res) {
+    res.render('config.ejs', {
+      title: 'Configuration App'
+    });
   });
-})
-
-app.get('\/\/visualization', function(req, res) {
-  res.render('visualization', {
-    title: 'visualization'
-  });
-})
 
 
-app.get('\/\/config', function(req, res) {
-  res.render('config.ejs', {
-    title: 'Configuration App'
-  });
-});
-
-
-app.get('\/\/querying', function(req, res) {
-  res.render('querying.ejs', {
-    title: 'Make a query'
-  });
-});
 
 // http post when  a user configurations is submitted
 app.post('\/\/config', function(req, res) {
@@ -218,6 +231,7 @@ watch(ErrorsFilePath, {
     // call if SyntaxErrors file was changed
     readSyntaxErrorsFile();
     console.log(app.locals.isExistSyntaxError);
+    showEmptyPgeFunc();
   }
 });
 

@@ -112,13 +112,11 @@ console.log(process.cwd());
       files.sort(SortFiles);
       files = uniquefileNames(files);
 
-
-
       var concepts = [];
       var allRDFObjects = filterExternalConcept(RDFObjectsPlusURI);
       var allSKOSObjects = filterExternalConcept(SKOSObjectsPlusURI);
 
-      res.render('documentation.ejs', {
+      res.render('documentation', {
         title: 'documentation',
         data: treeData,
         fileNames: files,
@@ -129,9 +127,10 @@ console.log(process.cwd());
         SKOSObjectsPlusURI: SKOSObjectsPlusURI
       });
     }
-    else {
-      //TODO: make a nice error template
-      res.send('something is wrong here!!');
+    else{res.render('emptyPage', {
+      title: 'documentation'
+    });
+
     }
   });
 });

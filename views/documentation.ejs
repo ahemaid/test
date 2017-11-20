@@ -1,4 +1,7 @@
-<% include header %>
+<% if (showEmptyPge){ %>
+<% include emptyPage %>
+<% }else{ %>
+  <% include header %>
 <div class="ui grid">
 <div class="ui container">
     <div class="ui segment" style="padding-top: 1cm">
@@ -108,6 +111,8 @@
 </div> -->
 
   <% include footer %>
+  <% } %>
+
     <!-- End of expressJS coding-->
 
     <!-- Start of javascript coding-->
