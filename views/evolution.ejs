@@ -48,7 +48,7 @@
         commitData.forEach(function(element) {
           if (element.commitTimestamp === item.commitTimestamp) {
             if (element.event === 'add')
-              $("#commitDetails").append("<h6><p class='bg-success text-success' style='margin-right:390px;'> + " + element.value + "</p></h6>");
+              $("#commitDetails").append("<h6><p class='bg-success text-default' style='margin-right:440px;'> + " + element.value + "</p></h6>");
             // else if (element.event === 'del')
             //   $("#commitDetails").append("<h6><p class='bg-danger text-danger' style='margin-right:390px;'>  - " + element.value + "</p></h6>");
 
@@ -57,7 +57,7 @@
         commitData.forEach(function(element) {
           if (element.commitTimestamp === item.commitTimestamp) {
             if (element.event === 'del')
-              $("#commitDetails").append("<h6><p class='bg-danger text-danger' style='margin-right:390px;'>  - " + element.value  + "</p></h6>");
+              $("#commitDetails").append("<h6><p class='bg-danger text-default' style='margin-right:440px;'>  - " + element.value  + "</p></h6>");
 
           }
         })

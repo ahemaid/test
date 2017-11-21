@@ -59,7 +59,7 @@ router.get('/', function(req, res) {
               element = element.split("_:file:")[0];
               diffArray.push({
                 'event': 'add',
-                'value': element,
+                'value': escapeHtml(element),
                 'commitMessage': commitMessage,
                 'pusher':pusher,
                 'commitTimestamp': commitTimestamp
@@ -73,7 +73,7 @@ router.get('/', function(req, res) {
               element = element.split("_:file:")[0];
               diffArray.push({
                 'event': 'del',
-                'value': element,
+                'value': escapeHtml(element),
                 'commitMessage': commitMessage,
                 'pusher':pusher,
                 'commitTimestamp': commitTimestamp

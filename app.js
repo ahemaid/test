@@ -111,99 +111,75 @@ if (fs.existsSync(repoFolderPath)) {
 }
 
 app.locals.showEmptyPge = false;
-function showEmptyPgeFunc(){
-if (app.locals.isExistSyntaxError === true && (currentrepositoryURL === "" || repositoryURL != currentrepositoryURL)) {
-app.locals.showEmptyPge = true;
-}
-else
-app.locals.showEmptyPge = false;
-console.log('showEmptyPge'+app.locals.showEmptyPge);
+
+function showEmptyPgeFunc() {
+  if (app.locals.isExistSyntaxError === true && (currentrepositoryURL === "" || repositoryURL != currentrepositoryURL)) {
+    app.locals.showEmptyPge = true;
+  } else
+    app.locals.showEmptyPge = false;
+  console.log('showEmptyPge' + app.locals.showEmptyPge);
 }
 showEmptyPgeFunc();
-// console.log('error for first time');
-//   var emptyPageFunc = function(req, res) {
-//     res.render('emptyPage', {
-//       title: 'Empty Page'
-//     });
-//   }
-//   app.get("\/\/", emptyPageFunc);
-//   app.get('\/\/analytics', emptyPageFunc);
-//   app.get('\/\/documentation', emptyPageFunc);
-//   app.get('\/\/visualization', emptyPageFunc);
-//   app.get('\/\/turtleEditor', emptyPageFunc);
-//   app.get('\/\/evolution', emptyPageFunc);
-//   app.get('\/\/analytics', emptyPageFunc);
-//   app.get('\/\/visualization', emptyPageFunc);
-//   app.get('\/\/querying', emptyPageFunc);
-//   app.use('\/\/validation', validation);
-//
-// } else {
 
-  // routing to the available routes on the app
-  app.use('\/\/', routes);
-  app.use('\/\/contactus', contactus);
-  app.use('\/\/users', users);
-  app.use('\/\/documentation', documentation);
-  app.use('\/\/webvowlLink', express.static(path.join(__dirname, "views/webvowl")));
-  app.use('\/\/turtleEditorLink', express.static(path.join(__dirname, "views/turtleEditor")));
-  app.use('\/\/analyticsLink', express.static(path.join(__dirname, "views/d3sparql")));
-  app.use('\/\/evolution', evolution);
-  app.use('\/\/startup', startup);
-  app.use('\/\/validation', validation);
-  app.use('\/\/client', client);
-  app.use('\/\/listener', listener);
+// routing to the available routes on the app
+app.use('\/\/', routes);
+app.use('\/\/contactus', contactus);
+app.use('\/\/users', users);
+app.use('\/\/documentation', documentation);
+app.use('\/\/webvowlLink', express.static(path.join(__dirname, "views/webvowl")));
+app.use('\/\/turtleEditorLink', express.static(path.join(__dirname, "views/turtleEditor")));
+app.use('\/\/analyticsLink', express.static(path.join(__dirname, "views/d3sparql")));
+app.use('\/\/evolution', evolution);
+app.use('\/\/startup', startup);
+app.use('\/\/validation', validation);
+app.use('\/\/client', client);
+app.use('\/\/listener', listener);
 
+app.use('\/\/fuseki/',  proxy('localhost:3030/',   {  
+  proxyReqPathResolver:   function(req)  {
+    console.log(require('url').parse(req.url).path);    
+    return  require('url').parse(req.url).path;  
+  }
+}));
 
-  app.use('\/\/fuseki/',  proxy('localhost:3030/',   {  
-    proxyReqPathResolver:   function(req)  {
-      console.log(require('url').parse(req.url).path);    
-      return  require('url').parse(req.url).path;  
-    }
-  }));
+app.use('\/\/fusekiOld/', proxy('localhost:3080/', {
+  proxyReqPathResolver: function(req) {
+    console.log(require('url').parse(req.url).path);
+    return require('url').parse(req.url).path;
+  }
+}));
 
-
-  app.use('\/\/fusekiOld/', proxy('localhost:3080/', {
-    proxyReqPathResolver: function(req) {
-      console.log(require('url').parse(req.url).path);
-      return require('url').parse(req.url).path;
-    }
-  }));
-
-
-  app.get('\/\/analytics', function(req, res) {
-    res.render('analytics', {
-      title: 'Analytics'
-    });
-  })
-
-
-  app.get('\/\/turtleEditor', function(req, res) {
-    res.render('turtleEditor', {
-      title: 'Editing'
-    });
-  })
-
-  app.get('\/\/visualization', function(req, res) {
-    res.render('visualization', {
-      title: 'visualization'
-    });
-  })
-
-
-  app.get('\/\/querying', function(req, res) {
-    res.render('querying.ejs', {
-      title: 'Make a query'
-    });
+app.get('\/\/analytics', function(req, res) {
+  res.render('analytics', {
+    title: 'Analytics'
   });
+})
 
-
-  app.get('\/\/config', function(req, res) {
-    res.render('config.ejs', {
-      title: 'Configuration App'
-    });
+app.get('\/\/turtleEditor', function(req, res) {
+  res.render('turtleEditor', {
+    title: 'Editing'
   });
+})
+
+app.get('\/\/visualization', function(req, res) {
+  res.render('visualization', {
+    title: 'visualization'
+  });
+})
 
 
+app.get('\/\/querying', function(req, res) {
+  res.render('querying.ejs', {
+    title: 'Make a query'
+  });
+});
+
+
+app.get('\/\/config', function(req, res) {
+  res.render('config.ejs', {
+    title: 'Configuration App'
+  });
+});
 
 // http post when  a user configurations is submitted
 app.post('\/\/config', function(req, res) {
@@ -238,8 +214,7 @@ watch(ErrorsFilePath, {
   }
 });
 
-
-// monitor changed userConfigurationsFile
+// monitor change of userConfigurationsFile
 watch(userConfigurationsFile, {
   recursive: true
 }, function(evt, name) {
@@ -251,7 +226,6 @@ watch(userConfigurationsFile, {
 });
 
 
-
 function isEmptyObject(obj) {
   for (var key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -260,8 +234,6 @@ function isEmptyObject(obj) {
   }
   return true;
 }
-
-//  catch 404 and forward to error handler
 
 // error handlers
 // development error handler
