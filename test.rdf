@@ -1,0 +1,128 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:foaf="http://xmlns.com/foaf/0.1/"
+xmlns:rel="http://www.perceive.net/schemas/20031015/relationship/" 
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+xmlns:owl="http://www.w3.org/2002/07/owl#"
+xmlns:nao="http://www.notanontology.org/rdf#"
+xmlns:pub="http://sw.deri.org/2006/11/research/publications.rdfs#">
+
+<rdf:Description rdf:nodeID="shouldParse">
+<dc:title rdf:parseType="Literal">yadda<br /><ba />kadda</dc:title>
+</rdf:Description>
+
+<foaf:Document rdf:about="http://sw.deri.org/~aidanh/foaf/alerts.rdf">
+<foaf:img rdf:resource="http://sw.deri.org/~aidanh/none.jpg" />
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Nothing" />
+<dc:title rdf:datatype="http://what.com/datatype/isthis">Page of errors for debugging</dc:title>
+<foaf:name rdf:resource="http://sw.deri.org/ajsd/" />
+<foaf:homepage>http://aidanhogan.com</foaf:homepage>
+<foaf:spellingerror>true</foaf:spellingerror>
+<nao:notmuch>true</nao:notmuch>
+<dc:author rdf:resource ="http://sw.deri.org/~aidanh/foaf/foaf.rdf#Aidan_Hogan" />
+<dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#datetime">2005-04-07</dc:date>
+<dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2005-03-20</dc:date>
+<foaf:mbox_sha1sum>08445a31a78661b5c746feff39a9db6e4e2cc5cf</foaf:mbox_sha1sum>
+<rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty" />
+</foaf:Document>
+
+<foaf:Person rdf:about="http://www.johnbreslin.com/foaf/foaf.rdf#me">
+<foaf:name>John Breslin</foaf:name>
+<foaf:mbox_sha1sum>9a6b7eefc08fd755d51dd9321aecfcc87992e9a2</foaf:mbox_sha1sum>
+<rdfs:seeAlso rdf:resource="http://www.johnbreslin.com/foaf/foaf.rdf" />
+</foaf:Person>
+
+<rdf:List rdf:nodeID="collnterminated">
+<rdf:first>1</rdf:first>
+<rdf:rest>
+<rdf:List>
+<rdf:first>2</rdf:first>
+</rdf:List>
+</rdf:rest>
+</rdf:List>
+
+<rdf:List rdf:nodeID="collbranch">
+<rdf:first>1</rdf:first>
+<rdf:rest>
+<rdf:List>
+<rdf:first>2</rdf:first>
+<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" />
+</rdf:List>
+</rdf:rest>
+<rdf:rest>
+<rdf:List>
+<rdf:first>3</rdf:first>
+<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" />
+</rdf:List>
+</rdf:rest>
+</rdf:List>
+
+<rdf:List rdf:nodeID="collcyclic">
+<rdf:first>1</rdf:first>
+<rdf:rest>
+<rdf:List>
+<rdf:first>2</rdf:first>
+<rdf:rest rdf:nodeID="collcyclic" />
+</rdf:List>
+</rdf:rest>
+</rdf:List>
+
+<rdf:Description rdf:nodeID="notype">
+<rdf:li>1</rdf:li>
+<rdf:li>2</rdf:li>
+<rdf:li>3</rdf:li>
+<rdf:li>4</rdf:li>
+</rdf:Description>
+
+<rdf:Bag rdf:nodeID="mtypes">
+<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Alt" />
+<rdf:li>1</rdf:li>
+<rdf:li>2</rdf:li>
+<rdf:li>3</rdf:li>
+<rdf:li>4</rdf:li>
+</rdf:Bag>
+
+<rdf:Alt rdf:nodeID="nocps" />
+
+<rdf:Seq rdf:nodeID="missingcps">
+<rdf:_1>1</rdf:_1>
+<rdf:_3>1</rdf:_3>
+<rdf:_4>1</rdf:_4>
+<rdf:_7>1</rdf:_7>
+</rdf:Seq>
+
+<rdf:Seq rdf:nodeID="multiplecps">
+<rdf:_1>1</rdf:_1>
+<rdf:_1>2</rdf:_1>
+<rdf:_2>3</rdf:_2>
+<rdf:_3>4</rdf:_3>
+</rdf:Seq>
+
+<rdf:Statement rdf:nodeID="reifnosub">
+<rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
+<rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement" />
+</rdf:Statement>
+
+<rdf:Statement rdf:nodeID="reifsublpredb">
+<rdf:subject>illegalsubject</rdf:subject>
+<rdf:predicate rdf:nodeID="reifillegalpred" />
+<rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement" />
+</rdf:Statement>
+
+<rdf:Statement rdf:nodeID="reifdupsubj">
+<rdf:subject rdf:nodeID="reifdupsubj" />
+<rdf:subject rdf:nodeID="reifdupsubj2" />
+<rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
+<rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement" />
+</rdf:Statement>
+
+<rdf:Description rdf:nodeID="dfsa">
+<owl:sameAs rdf:resource="http://yadda.com/yada" />
+<owl:differentFrom rdf:resource="http://yadda.com/yada" />
+</rdf:Description>
+
+<rdf:Description rdf:nodeID="dfself">
+<owl:differentFrom rdf:nodeID="dfself" />
+</rdf:Description>
+
+</rdf:RDF>
